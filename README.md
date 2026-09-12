@@ -4,6 +4,8 @@
 
 Proiect realizat pentru categoria **Software Development** (Infomatrix).
 
+### 🔴 [Vezi aplicația live → clima-watch.vercel.app](https://clima-watch.vercel.app)
+
 ---
 
 ## Problema
