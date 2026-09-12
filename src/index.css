@@ -1,0 +1,159 @@
+@import url('https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700;800&display=swap');
+@import "tailwindcss";
+
+:root {
+  --accent-cyan: #38bdf8;
+  --accent-blue: #60a5fa;
+  --accent-teal: #2dd4bf;
+}
+
+html,
+body {
+  background: #05070f;
+}
+
+body {
+  font-family: 'Public Sans', system-ui, sans-serif;
+}
+
+.heading-font {
+  font-family: 'Public Sans', system-ui, sans-serif;
+}
+
+/* Scrollbar personalizat */
+* {
+  scrollbar-color: #334155 #05070f;
+}
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #05070f;
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(var(--accent-cyan), var(--accent-blue));
+  border-radius: 999px;
+}
+
+/* Card sticlos, cu glow domol la hover */
+.glass-card {
+  position: relative;
+  background: rgba(30, 41, 59, 0.5);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(148, 163, 184, 0.14);
+  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+.glass-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(56, 189, 248, 0.35);
+  box-shadow: 0 10px 30px -14px rgba(56, 189, 248, 0.28);
+}
+
+/* Buton cu glow domol */
+.glow-btn {
+  background: linear-gradient(135deg, var(--accent-cyan), var(--accent-blue));
+  box-shadow: 0 0 16px rgba(56, 189, 248, 0.32);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.glow-btn:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 0 22px rgba(56, 189, 248, 0.45);
+}
+.glow-btn:disabled {
+  transform: none;
+}
+
+/* Blob-uri de fundal (aurora) */
+@keyframes blob-move {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  33% {
+    transform: translate(40px, -30px) scale(1.12);
+  }
+  66% {
+    transform: translate(-30px, 25px) scale(0.94);
+  }
+}
+.aurora-blob {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(90px);
+  animation: blob-move 18s ease-in-out infinite;
+}
+
+/* Particule plutitoare */
+@keyframes float-up {
+  0% {
+    transform: translateY(0) translateX(0) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.7;
+  }
+  90% {
+    opacity: 0.35;
+  }
+  100% {
+    transform: translateY(-110vh) translateX(25px) rotate(180deg);
+    opacity: 0;
+  }
+}
+.particle {
+  position: absolute;
+  bottom: -10%;
+  animation: float-up linear infinite;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* Puls de alertă (pentru recomandări urgente) */
+@keyframes pulse-glow {
+  0%,
+  100% {
+    box-shadow: 0 0 0 rgba(239, 68, 68, 0);
+  }
+  50% {
+    box-shadow: 0 0 26px rgba(239, 68, 68, 0.45);
+  }
+}
+.pulse-danger {
+  animation: pulse-glow 2.4s ease-in-out infinite;
+}
+
+/* Shimmer pentru loading skeleton */
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+.skeleton-shimmer {
+  background: linear-gradient(100deg, rgba(30, 41, 59, 0.7) 30%, rgba(56, 189, 248, 0.18) 50%, rgba(30, 41, 59, 0.7) 70%);
+  background-size: 200% 100%;
+  animation: shimmer 1.6s linear infinite;
+}
+
+/* Fum ridicându-se din ilustrația de smog */
+@keyframes smog-rise {
+  0% {
+    transform: translateY(0) scale(0.6);
+    opacity: 0;
+  }
+  30% {
+    opacity: 0.55;
+  }
+  100% {
+    transform: translateY(-55px) scale(1.7);
+    opacity: 0;
+  }
+}
+.smog-particle {
+  animation: smog-rise 4s ease-in infinite;
+  transform-box: fill-box;
+  transform-origin: center;
+}
