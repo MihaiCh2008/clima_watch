@@ -21,10 +21,10 @@
   --text-muted: #5c6b5e;
   --text-soft: #8d9890;
   --border: #e1dcc9;
-  --accent: #1f6f4a;
+  --accent: #1d4f73;
   --accent-ink: #f7f4ea;
-  --accent-soft: #dbe7d3;
-  --accent-2: #2a7f8c;
+  --accent-soft: #dbe6ec;
+  --accent-2: #2f8f9e;
 }
 
 html,
@@ -35,8 +35,6 @@ body {
 body {
   font-family: 'Inter', system-ui, sans-serif;
   color: var(--text);
-  letter-spacing: 0.012em;
-  word-spacing: 0.04em;
 }
 
 .heading-font {
