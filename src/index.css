@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
 @import "tailwindcss";
 
 @theme {
@@ -14,6 +14,7 @@
 }
 
 :root {
+  color-scheme: light;
   --bg: #f7f4ea;
   --bg-card: #fffdf6;
   --bg-dark: #10201a;
@@ -35,10 +36,13 @@ body {
 body {
   font-family: 'Inter', system-ui, sans-serif;
   color: var(--text);
+  letter-spacing: 0.04em;
+  word-spacing: 0.18em;
 }
 
 .heading-font {
-  font-family: 'Instrument Serif', Georgia, serif;
+  font-family: 'Inter', system-ui, sans-serif;
+  letter-spacing: 0.03em;
 }
 
 .label-mono {
