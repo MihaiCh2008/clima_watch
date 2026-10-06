@@ -4,14 +4,14 @@ interface SideNoteProps {
   n: number
   text: string
   source?: string
-  /** clase pentru poziționare absolută — ex: "top-16 right-full mr-8" */
+  /** classes for absolute positioning — e.g. "top-16 right-full mr-8" */
   wrapperClassName: string
   accent?: string
 }
 
 /**
- * Notiță laterală decorativă, vizibilă doar pe ecrane late (xl+), unde altfel
- * ar rămâne spațiu gol în stânga/dreapta coloanei centrale de conținut.
+ * Decorative side note, only visible on wide screens (xl+), where empty
+ * space would otherwise remain left/right of the central content column.
  */
 export function SideNote({ n, text, source, wrapperClassName, accent = 'bg-sky-400/70' }: SideNoteProps) {
   return (

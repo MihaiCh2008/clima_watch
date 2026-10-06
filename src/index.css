@@ -20,7 +20,7 @@ body {
   font-family: 'Public Sans', system-ui, sans-serif;
 }
 
-/* Scrollbar personalizat */
+/* Custom scrollbar */
 * {
   scrollbar-color: #334155 #05070f;
 }
@@ -35,7 +35,7 @@ body {
   border-radius: 999px;
 }
 
-/* Card sticlos, cu glow domol la hover */
+/* Glassy card with a soft glow on hover */
 .glass-card {
   position: relative;
   background: rgba(30, 41, 59, 0.5);
@@ -50,7 +50,7 @@ body {
   box-shadow: 0 10px 30px -14px rgba(56, 189, 248, 0.28);
 }
 
-/* Buton cu glow domol */
+/* Button with a soft glow */
 .glow-btn {
   background: linear-gradient(135deg, var(--accent-cyan), var(--accent-blue));
   box-shadow: 0 0 16px rgba(56, 189, 248, 0.32);
@@ -64,7 +64,7 @@ body {
   transform: none;
 }
 
-/* Blob-uri de fundal (aurora) */
+/* Background blobs (aurora) */
 @keyframes blob-move {
   0%,
   100% {
@@ -84,7 +84,7 @@ body {
   animation: blob-move 18s ease-in-out infinite;
 }
 
-/* Particule plutitoare */
+/* Floating particles */
 @keyframes float-up {
   0% {
     transform: translateY(0) translateX(0) rotate(0deg);
@@ -109,7 +109,7 @@ body {
   user-select: none;
 }
 
-/* Puls de alertă (pentru recomandări urgente) */
+/* Alert pulse (for urgent recommendations) */
 @keyframes pulse-glow {
   0%,
   100% {
@@ -123,7 +123,7 @@ body {
   animation: pulse-glow 2.4s ease-in-out infinite;
 }
 
-/* Shimmer pentru loading skeleton */
+/* Shimmer for the loading skeleton */
 @keyframes shimmer {
   0% {
     background-position: -200% 0;
@@ -138,7 +138,7 @@ body {
   animation: shimmer 1.6s linear infinite;
 }
 
-/* Fum ridicându-se din ilustrația de smog */
+/* Smoke rising from the smog illustration */
 @keyframes smog-rise {
   0% {
     transform: translateY(0) scale(0.6);

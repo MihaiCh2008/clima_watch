@@ -6,14 +6,14 @@ interface OrgLinkPanelProps {
   description: string
   url: string
   ctaLabel: string
-  /** clase pentru poziționare absolută — ex: "top-16 right-full mr-10" */
+  /** classes for absolute positioning — e.g. "top-16 right-full mr-10" */
   wrapperClassName: string
   accent?: string
 }
 
 /**
- * Panou lateral mare, cu link real către o organizație care luptă împotriva
- * poluării aerului. Vizibil doar pe ecrane late (xl+), unde umple spațiul gol.
+ * Large side panel with a real link to an organization fighting air
+ * pollution. Only visible on wide screens (xl+), where it fills empty space.
  */
 export function OrgLinkPanel({ n, name, description, url, ctaLabel, wrapperClassName, accent = 'bg-sky-400/70' }: OrgLinkPanelProps) {
   return (

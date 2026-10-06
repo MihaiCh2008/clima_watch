@@ -11,7 +11,7 @@ export function HistoryChart({ history }: { history: HistoryPoint[] }) {
         {history.map((point, i) => {
           const level = safeAqi(point.aqi)
           const visual = getAqiColor(level)
-          const heightPercent = 20 + level * 16 // minim vizibil + variație clară
+          const heightPercent = 20 + level * 16 // visible minimum + clear variation
           return (
             <div key={i} className="flex-1 flex flex-col items-center gap-2 h-full">
               <div className="flex-1 flex items-end w-full">

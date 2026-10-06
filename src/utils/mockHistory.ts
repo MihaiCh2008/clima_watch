@@ -1,6 +1,6 @@
 import type { HistoryPoint } from '../types/airQuality'
 
-// Date mock temporare — le înlocuim cu date reale de istoric când avem un endpoint pentru asta
+// Temporary mock data — to be replaced with real historical data once a history endpoint exists
 export function generateMockHistory(currentAqi: number, dayLabels: readonly string[]): HistoryPoint[] {
   return dayLabels.map((day, i) => {
     if (i === dayLabels.length - 1) return { day, aqi: currentAqi }

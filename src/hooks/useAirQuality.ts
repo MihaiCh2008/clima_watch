@@ -26,8 +26,8 @@ export function useAirQuality(profile: UserProfile, t: Translation) {
     setData(null)
 
     try {
-      // Cerere către propriul backend (funcție serverless local/Vercel) — cheia
-      // OpenWeatherMap nu mai există deloc în codul trimis către browser.
+      // Request to our own backend (local/Vercel serverless function) — the
+      // OpenWeatherMap key never exists at all in the code shipped to the browser.
       const res = await fetch(`/api/air-quality?city=${encodeURIComponent(city)}`)
 
       if (res.status === 404) {
@@ -44,8 +44,8 @@ export function useAirQuality(profile: UserProfile, t: Translation) {
       setData({ aqi: body.aqi, components: body.components })
       setHistory(generateMockHistory(body.aqi, t.home.days))
 
-      // Alertă proactivă: dacă aerul e problematic pentru profilul utilizatorului,
-      // trimitem o notificare de browser — nu doar afișăm un status pasiv.
+      // Proactive alert: if the air is problematic for the user's profile,
+      // we send a browser notification — not just a passive status display.
       if (body.aqi >= 3) {
         const rec = getRecommendation(body.aqi, profile, t)
         if (rec.level !== 'ok') {

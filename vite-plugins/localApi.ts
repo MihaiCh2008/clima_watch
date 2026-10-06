@@ -2,9 +2,9 @@ import type { Plugin } from 'vite'
 import { getAirQuality } from '../api/_lib/getAirQuality.js'
 
 /**
- * Emulează local endpoint-ul /api/air-quality (același cod ca funcția serverless
- * din api/air-quality.ts), ca backend-ul să funcționeze identic în dezvoltare —
- * fără să fie nevoie de Vercel CLI, cont sau deploy.
+ * Emulates the /api/air-quality endpoint locally (same code as the serverless
+ * function in api/air-quality.ts), so the backend behaves identically in
+ * development — no Vercel CLI, account, or deploy needed.
  */
 export function localApiPlugin(apiKey: string | undefined): Plugin {
   return {

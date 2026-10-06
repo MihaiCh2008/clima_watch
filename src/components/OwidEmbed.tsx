@@ -1,10 +1,11 @@
 interface OwidEmbedProps {
   slug: string
   title: string
+  source: string
 }
 
-/** Grafic interactiv preluat live de pe Our World in Data — selector de țară + interval de ani inclus. */
-export function OwidEmbed({ slug, title }: OwidEmbedProps) {
+/** Live interactive chart embedded from Our World in Data — includes a country selector and year range. */
+export function OwidEmbed({ slug, title, source }: OwidEmbedProps) {
   return (
     <div className="glass-card rounded-2xl overflow-hidden">
       <div className="relative w-full" style={{ paddingTop: '65%' }}>
@@ -17,9 +18,7 @@ export function OwidEmbed({ slug, title }: OwidEmbedProps) {
       </div>
       <div className="p-4">
         <p className="font-medium heading-font">{title}</p>
-        <p className="text-slate-500 text-xs mt-1">
-          Sursă: Our World in Data — grafic interactiv live, poți alege orice țară din listă
-        </p>
+        <p className="text-slate-500 text-xs mt-1">{source}</p>
       </div>
     </div>
   )

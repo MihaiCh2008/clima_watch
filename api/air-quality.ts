@@ -6,8 +6,8 @@ interface RequestWithQuery extends IncomingMessage {
 }
 
 /**
- * Funcție serverless (format Vercel): GET /api/air-quality?city=...
- * Deploy gratuit pe Vercel (Hobby tier) — vezi README pentru pași, fără cont plătit necesar.
+ * Serverless function (Vercel format): GET /api/air-quality?city=...
+ * Free deploy on Vercel (Hobby tier) — see the README for steps, no paid account needed.
  */
 export default async function handler(req: RequestWithQuery, res: ServerResponse) {
   const queryCity = req.query?.city

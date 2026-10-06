@@ -9,8 +9,8 @@ import { ProblemPage } from './pages/ProblemPage'
 import { SolutionPage } from './pages/SolutionPage'
 
 function backgroundForRoute(pathname: string): BackgroundVariant {
-  if (pathname === '/problema') return 'factory'
-  if (pathname === '/solutie') return 'mountain'
+  if (pathname === '/problem') return 'factory'
+  if (pathname === '/solution') return 'mountain'
   return 'planet'
 }
 
@@ -25,9 +25,9 @@ function AppShell() {
       <div className="relative z-10">
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="/problema" element={<ProblemPage />} />
-          <Route path="/solutie" element={<SolutionPage />} />
-          <Route path="/profil" element={<ProfilePage />} />
+          <Route path="/problem" element={<ProblemPage />} />
+          <Route path="/solution" element={<SolutionPage />} />
+          <Route path="/profile" element={<ProfilePage />} />
         </Routes>
       </div>
     </div>

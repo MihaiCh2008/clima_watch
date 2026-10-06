@@ -9,7 +9,7 @@ const SIZE_CLASSES: Record<'sm' | 'md', string> = {
   md: 'w-9 h-9 text-sm',
 }
 
-/** Insignă numerotată — folosită în locul emoji-urilor, în tot restul aplicației. */
+/** Numbered badge — used instead of emoji throughout the rest of the app. */
 export function NumberBadge({ n, size = 'md', className = '' }: NumberBadgeProps) {
   return (
     <span

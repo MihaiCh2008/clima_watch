@@ -52,7 +52,7 @@ export function ProblemPage() {
         <Reveal>
           <div>
             <h2 className="text-xl font-extrabold heading-font text-white mb-4">{p.historyChartTitle}</h2>
-            <OwidEmbed slug="annual-co2-emissions-per-country" title={p.owidTitle} />
+            <OwidEmbed slug="annual-co2-emissions-per-country" title={p.owidTitle} source={p.owidSource} />
           </div>
         </Reveal>
 

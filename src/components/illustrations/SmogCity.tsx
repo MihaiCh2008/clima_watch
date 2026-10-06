@@ -1,6 +1,6 @@
 export function SmogCity() {
   return (
-    <svg viewBox="0 0 400 180" className="w-full h-auto" role="img" aria-label="Ilustrație oraș acoperit de smog">
+    <svg viewBox="0 0 400 180" className="w-full h-auto" role="img" aria-label="Illustration of a city covered in smog">
       <defs>
         <linearGradient id="skySmog" x1="0" y1="0" x2="0" y2="1">
           <stop offset="0%" stopColor="#f97316" stopOpacity="0.28" />
@@ -30,7 +30,7 @@ export function SmogCity() {
         <circle className="smog-particle" cx="147" cy="24" r="11" fill="#fdba74" style={{ animationDelay: '2.6s' }} />
         <circle className="smog-particle" cx="147" cy="24" r="6" fill="#ef4444" style={{ animationDelay: '3.9s' }} />
       </g>
-      {/* pâclă groasă peste orizont */}
+      {/* thick haze over the horizon */}
       <rect x="0" y="150" width="400" height="30" fill="#7c2d12" opacity="0.18" />
     </svg>
   )

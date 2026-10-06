@@ -50,6 +50,7 @@ export interface Translation {
     bullet4: string
     historyChartTitle: string
     owidTitle: string
+    owidSource: string
     videoTitle: string
     videoCredit: string
     sourcesFooter: string
@@ -164,6 +165,7 @@ export const translations: Record<Lang, Translation> = {
         'Datele sunt complexe — grafice, modele climatice și procente în °C nu spun omului obișnuit ce înseamnă practic pentru viața lui de zi cu zi.',
       historyChartTitle: 'Evoluție istorică, pe țară — emisii de CO2',
       owidTitle: 'Emisii anuale de CO2, pe țară',
+      owidSource: 'Sursă: Our World in Data — grafic interactiv live, poți alege orice țară din listă',
       videoTitle: 'Video recomandat',
       videoCredit: 'Katharine Hayhoe — TED Talk',
       sourcesFooter:
@@ -299,6 +301,7 @@ export const translations: Record<Lang, Translation> = {
         "The data is complex — graphs, climate models, and percentages in °C don't tell an ordinary person what it practically means for their daily life.",
       historyChartTitle: 'Historical trend by country — CO2 emissions',
       owidTitle: 'Annual CO2 emissions, by country',
+      owidSource: 'Source: Our World in Data — live interactive chart, pick any country from the list',
       videoTitle: 'Recommended video',
       videoCredit: 'Katharine Hayhoe — TED Talk',
       sourcesFooter:
@@ -434,6 +437,7 @@ export const translations: Record<Lang, Translation> = {
         'Данные сложны — графики, климатические модели и проценты в °C не говорят обычному человеку, что это значит на практике для его повседневной жизни.',
       historyChartTitle: 'Историческая динамика по странам — выбросы CO2',
       owidTitle: 'Ежегодные выбросы CO2 по странам',
+      owidSource: 'Источник: Our World in Data — живой интерактивный график, можно выбрать любую страну из списка',
       videoTitle: 'Рекомендуемое видео',
       videoCredit: 'Кэтрин Хейхоу — выступление TED',
       sourcesFooter:

@@ -6,10 +6,10 @@ export function Navbar() {
   const { t } = useLanguage()
 
   const navItems = [
-    { to: '/problema', label: t.nav.problem, end: false },
-    { to: '/solutie', label: t.nav.solution, end: false },
+    { to: '/problem', label: t.nav.problem, end: false },
+    { to: '/solution', label: t.nav.solution, end: false },
     { to: '/', label: t.nav.live, end: true },
-    { to: '/profil', label: t.nav.profile, end: false },
+    { to: '/profile', label: t.nav.profile, end: false },
   ]
 
   return (

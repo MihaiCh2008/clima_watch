@@ -1,6 +1,6 @@
 export function CleanCity() {
   return (
-    <svg viewBox="0 0 400 180" className="w-full h-auto" role="img" aria-label="Ilustrație oraș cu aer curat">
+    <svg viewBox="0 0 400 180" className="w-full h-auto" role="img" aria-label="Illustration of a city with clean air">
       <defs>
         <linearGradient id="skyClean" x1="0" y1="0" x2="0" y2="1">
           <stop offset="0%" stopColor="#22d3ee" stopOpacity="0.25" />
@@ -27,7 +27,7 @@ export function CleanCity() {
         <rect x="213" y="60" width="28" height="120" />
         <rect x="245" y="98" width="40" height="82" />
       </g>
-      {/* geamuri luminate */}
+      {/* lit windows */}
       <g fill="#a5f3fc" opacity="0.55">
         <rect x="16" y="105" width="5" height="5" />
         <rect x="28" y="105" width="5" height="5" />
@@ -38,7 +38,7 @@ export function CleanCity() {
         <rect x="221" y="75" width="5" height="5" />
         <rect x="221" y="92" width="5" height="5" />
       </g>
-      {/* păsări */}
+      {/* birds */}
       <g stroke="#67e8f9" strokeWidth="2" fill="none" opacity="0.75" strokeLinecap="round">
         <path d="M55 28 q6 -9 12 0 q6 -9 12 0" />
         <path d="M95 45 q5 -7 10 0 q5 -7 10 0" />

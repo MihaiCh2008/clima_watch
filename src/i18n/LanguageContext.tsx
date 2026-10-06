@@ -15,9 +15,9 @@ function loadLang(): Lang {
     const saved = localStorage.getItem(STORAGE_KEY)
     if (saved === 'ro' || saved === 'en' || saved === 'ru') return saved
   } catch {
-    // localStorage indisponibil — pornim cu limba implicită
+    // localStorage unavailable — start with the default language
   }
-  return 'ro'
+  return 'en'
 }
 
 export function LanguageProvider({ children }: { children: ReactNode }) {
@@ -28,7 +28,7 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
     try {
       localStorage.setItem(STORAGE_KEY, next)
     } catch {
-      // ignorăm — preferința rămâne doar pentru sesiunea curentă
+      // ignore — the preference only lasts for the current session
     }
   }
 

@@ -6,7 +6,7 @@ interface RevealProps {
   className?: string
 }
 
-/** Animează intrarea unui element (fade + slide-up) când ajunge în viewport. */
+/** Animates an element's entrance (fade + slide-up) once it reaches the viewport. */
 export function Reveal({ children, delay = 0, className = '' }: RevealProps) {
   const ref = useRef<HTMLDivElement>(null)
   const [visible, setVisible] = useState(false)

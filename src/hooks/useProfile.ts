@@ -27,7 +27,7 @@ export function useProfile() {
     try {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(profile))
     } catch {
-      // localStorage indisponibil (mod privat etc.) — ignorăm, profilul rămâne doar în sesiune
+      // localStorage unavailable (private mode, etc.) — ignore, profile stays session-only
     }
   }, [profile])
 

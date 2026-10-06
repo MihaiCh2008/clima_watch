@@ -28,10 +28,10 @@ interface AirPollutionResponse {
 }
 
 /**
- * Logica de backend: geocodifică orașul, apoi cere calitatea aerului la OpenWeatherMap.
- * Cheia API trăiește doar aici, pe server — nu ajunge niciodată în codul trimis către browser.
- * Folosită atât de funcția serverless (api/air-quality.ts), cât și de middleware-ul local
- * de dezvoltare (vite-plugins/localApi.ts), ca cele două să se comporte identic.
+ * Backend logic: geocodes the city, then requests air quality from OpenWeatherMap.
+ * The API key lives only here, server-side — it never reaches the code shipped to the browser.
+ * Used by both the serverless function (api/air-quality.ts) and the local dev
+ * middleware (vite-plugins/localApi.ts), so the two behave identically.
  */
 export async function getAirQuality(city: string | null, apiKey: string | undefined): Promise<ApiOutcome> {
   if (!city || !city.trim()) {

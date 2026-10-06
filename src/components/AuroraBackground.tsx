@@ -15,7 +15,7 @@ const PARTICLES = Array.from({ length: 16 }, (_, i) => ({
   symbol: i % 3 === 0 ? '✦' : i % 3 === 1 ? '•' : '◦',
 }))
 
-/** Fundal decorativ: aurora + particule plutitoare. Nu interceptează click-uri. */
+/** Decorative background: aurora + floating particles. Does not intercept clicks. */
 export function AuroraBackground() {
   return (
     <div className="fixed inset-0 overflow-hidden pointer-events-none -z-10">

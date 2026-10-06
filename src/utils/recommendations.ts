@@ -7,9 +7,9 @@ export interface Recommendation {
 }
 
 /**
- * Transformă un indice AQI brut + profilul de sănătate al utilizatorului
- * într-un sfat concret de acțiune, tradus în limba curentă. Aici e diferența
- * dintre "afișez date" și "ajut omul să decidă ce face azi".
+ * Turns a raw AQI reading + the user's health profile into a concrete action
+ * recommendation, translated into the current language. This is the difference
+ * between "display data" and "help the person decide what to do today".
  */
 export function getRecommendation(aqi: number, profile: UserProfile, t: Translation): Recommendation {
   const isSensitive = profile.hasRespiratoryIssue || profile.hasYoungChild
@@ -26,7 +26,7 @@ export function getRecommendation(aqi: number, profile: UserProfile, t: Translat
     return { level: 'warning', message: t.rec.warningDefault }
   }
 
-  // aqi 4 sau 5
+  // aqi 4 or 5
   if (isSensitive) return { level: 'danger', message: t.rec.dangerSensitive }
   if (profile.exercisesOutdoors) return { level: 'danger', message: t.rec.dangerExercise }
   return { level: 'danger', message: t.rec.dangerDefault }
