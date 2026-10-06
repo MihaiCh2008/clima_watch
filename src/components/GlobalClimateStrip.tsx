@@ -16,9 +16,9 @@ interface ChipProps {
 function Chip({ value, label, source }: ChipProps) {
   return (
     <div className="glass-card rounded-xl p-4 text-center flex-1 min-w-[140px]">
-      <p className="text-2xl font-extrabold heading-font text-sky-300">{value}</p>
-      <p className="text-slate-300 text-xs mt-1">{label}</p>
-      {source && <p className="text-slate-500 text-[10px] mt-1">{source}</p>}
+      <p className="text-2xl font-extrabold heading-font text-[var(--accent)]">{value}</p>
+      <p className="text-[var(--text-muted)] text-xs mt-1">{label}</p>
+      {source && <p className="text-[var(--text-soft)] text-[10px] mt-1">{source}</p>}
     </div>
   )
 }
@@ -29,7 +29,7 @@ export function GlobalClimateStrip() {
 
   return (
     <div className="mb-8">
-      <h2 className="text-sm font-bold heading-font text-slate-400 uppercase tracking-wide mb-3">
+      <h2 className="text-sm font-bold label-mono text-[var(--text-muted)] uppercase tracking-wide mb-3">
         {t.home.globalContextTitle}
       </h2>
       <div className="flex flex-wrap gap-3">

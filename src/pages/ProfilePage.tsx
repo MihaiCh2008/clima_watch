@@ -14,14 +14,14 @@ function ToggleRow({ label, description, checked, onChange }: ToggleRowProps) {
   return (
     <label className="flex items-start justify-between gap-4 glass-card rounded-lg p-5 cursor-pointer">
       <div>
-        <p className="font-bold heading-font text-white">{label}</p>
-        <p className="text-slate-400 text-sm mt-1">{description}</p>
+        <p className="font-bold heading-font text-[var(--text)]">{label}</p>
+        <p className="text-[var(--text-muted)] text-sm mt-1">{description}</p>
       </div>
       <input
         type="checkbox"
         checked={checked}
         onChange={(e) => onChange(e.target.checked)}
-        className="mt-1 w-5 h-5 accent-sky-400 shrink-0"
+        className="mt-1 w-5 h-5 accent-[var(--accent)] shrink-0"
       />
     </label>
   )
@@ -43,10 +43,10 @@ export function ProfilePage() {
           text={t.profile.sideNote1}
           source={t.profile.sideNote1Source}
           wrapperClassName="top-16 right-full mr-10"
-          accent="bg-blue-400/70"
+          accent="bg-[var(--accent)]/70"
         />
 
-        <p className="text-slate-400 text-center mb-10 text-base sm:text-lg heading-font">{t.profile.subtitle}</p>
+        <p className="text-[var(--text-muted)] text-center mb-10 text-base sm:text-lg heading-font">{t.profile.subtitle}</p>
 
         <div className="space-y-4">
           <ToggleRow
@@ -76,13 +76,13 @@ export function ProfilePage() {
         </div>
 
         {profile.wantsCarbonTips && (
-          <div className="mt-4 glass-card rounded-lg p-5 border-l-4 border-teal-400/70">
-            <p className="font-bold heading-font text-teal-300 mb-1">{t.profile.carbonTipTitle}</p>
-            <p className="text-slate-300 text-sm">{t.profile.carbonTipText}</p>
+          <div className="mt-4 glass-card rounded-lg p-5 border-l-4 border-[var(--accent-2)]">
+            <p className="font-bold heading-font text-[var(--accent-2)] mb-1">{t.profile.carbonTipTitle}</p>
+            <p className="text-[var(--text-muted)] text-sm">{t.profile.carbonTipText}</p>
           </div>
         )}
 
-        <div className="mt-6 glass-card rounded-lg p-5 text-sm text-sky-200">{t.profile.footerNote}</div>
+        <div className="mt-6 glass-card rounded-lg p-5 text-sm text-[var(--text-muted)]">{t.profile.footerNote}</div>
       </div>
     </div>
   )

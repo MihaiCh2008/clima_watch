@@ -17,8 +17,8 @@ export function OwidEmbed({ slug, title, source }: OwidEmbedProps) {
         />
       </div>
       <div className="p-4">
-        <p className="font-medium heading-font">{title}</p>
-        <p className="text-slate-500 text-xs mt-1">{source}</p>
+        <p className="font-medium heading-font text-[var(--text)]">{title}</p>
+        <p className="text-[var(--text-soft)] text-xs mt-1">{source}</p>
       </div>
     </div>
   )

@@ -5,11 +5,11 @@ export interface AqiColor {
 
 // OpenWeatherMap AQI scale: 1 (Good) .. 5 (Hazardous). Colors are language-independent.
 export const AQI_COLORS: Record<number, AqiColor> = {
-  1: { color: 'bg-green-500', barColor: 'bg-green-400' },
-  2: { color: 'bg-yellow-400', barColor: 'bg-yellow-300' },
-  3: { color: 'bg-orange-400', barColor: 'bg-orange-300' },
-  4: { color: 'bg-red-500', barColor: 'bg-red-400' },
-  5: { color: 'bg-purple-700', barColor: 'bg-purple-500' },
+  1: { color: 'bg-[#1f6f4a]', barColor: 'bg-[#2f8f63]' },
+  2: { color: 'bg-[#b3862a]', barColor: 'bg-[#c99c3c]' },
+  3: { color: 'bg-[#c17a3d]', barColor: 'bg-[#d4914f]' },
+  4: { color: 'bg-[#a8432a]', barColor: 'bg-[#bd5538]' },
+  5: { color: 'bg-[#6e3350]', barColor: 'bg-[#854166]' },
 }
 
 export function getAqiColor(aqi: number): AqiColor {

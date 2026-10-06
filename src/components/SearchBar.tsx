@@ -17,16 +17,16 @@ export function SearchBar({ city, onCityChange, onSearch, loading }: SearchBarPr
         onChange={(e) => onCityChange(e.target.value)}
         onKeyDown={(e) => e.key === 'Enter' && onSearch()}
         placeholder={t.home.searchPlaceholder}
-        className="flex-1 px-4 py-3 rounded-xl glass-card focus:outline-none focus:border-cyan-400/60 focus:shadow-[0_0_20px_rgba(34,211,238,0.3)] transition-all placeholder:text-slate-500"
+        className="flex-1 px-4 py-3 rounded-xl glass-card text-[var(--text)] focus:outline-none focus:border-[var(--accent)] transition-all placeholder:text-[var(--text-soft)]"
       />
       <button
         onClick={onSearch}
         disabled={loading}
-        className="px-6 py-3 rounded-xl glow-btn font-semibold text-white disabled:opacity-50 disabled:cursor-not-allowed"
+        className="px-6 py-3 rounded-xl glow-btn font-semibold disabled:opacity-50 disabled:cursor-not-allowed"
       >
         {loading ? (
           <span className="flex items-center gap-2">
-            <span className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></span>
+            <span className="w-4 h-4 border-2 border-[var(--accent-ink)] border-t-transparent rounded-full animate-spin"></span>
             {t.home.searching}
           </span>
         ) : (

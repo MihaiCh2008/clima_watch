@@ -15,12 +15,12 @@ export function ProblemPage() {
   return (
     <div>
       <div className="max-w-2xl mx-auto relative space-y-10">
-        <SideNote n={1} text={p.sideNote1} source={p.sideNote1Source} wrapperClassName="top-4 right-full mr-10" accent="bg-blue-400/70" />
-        <SideNote n={2} text={p.sideNote2} source={p.sideNote2Source} wrapperClassName="top-[26rem] left-full ml-10" accent="bg-teal-400/70" />
-        <SideNote n={3} text={p.sideNote3} source={p.sideNote3Source} wrapperClassName="top-[50rem] right-full mr-10" accent="bg-sky-400/70" />
+        <SideNote n={1} text={p.sideNote1} source={p.sideNote1Source} wrapperClassName="top-4 right-full mr-10" accent="bg-[var(--accent)]/70" />
+        <SideNote n={2} text={p.sideNote2} source={p.sideNote2Source} wrapperClassName="top-[26rem] left-full ml-10" accent="bg-[var(--accent-2)]/70" />
+        <SideNote n={3} text={p.sideNote3} source={p.sideNote3Source} wrapperClassName="top-[50rem] right-full mr-10" accent="bg-[var(--accent-2)]/70" />
 
         <div className="text-center">
-          <p className="text-slate-400 text-base sm:text-lg heading-font">{p.intro}</p>
+          <p className="text-[var(--text-muted)] text-base sm:text-lg heading-font">{p.intro}</p>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
@@ -37,8 +37,8 @@ export function ProblemPage() {
 
         <Reveal>
           <div className="glass-card rounded-2xl p-6 sm:p-7 space-y-5">
-            <h2 className="text-xl font-extrabold heading-font text-white">{p.whyTitle}</h2>
-            <ul className="space-y-4 text-sm text-slate-300">
+            <h2 className="text-xl font-extrabold heading-font text-[var(--text)]">{p.whyTitle}</h2>
+            <ul className="space-y-4 text-sm text-[var(--text-muted)]">
               {bullets.map((bullet, i) => (
                 <li key={i} className="flex gap-3">
                   <NumberBadge n={i + 1} size="sm" />
@@ -51,14 +51,14 @@ export function ProblemPage() {
 
         <Reveal>
           <div>
-            <h2 className="text-xl font-extrabold heading-font text-white mb-4">{p.historyChartTitle}</h2>
+            <h2 className="text-xl font-extrabold heading-font text-[var(--text)] mb-4">{p.historyChartTitle}</h2>
             <OwidEmbed slug="annual-co2-emissions-per-country" title={p.owidTitle} source={p.owidSource} />
           </div>
         </Reveal>
 
         <Reveal>
           <div>
-            <h2 className="text-xl font-extrabold heading-font text-white mb-4">{p.videoTitle}</h2>
+            <h2 className="text-xl font-extrabold heading-font text-[var(--text)] mb-4">{p.videoTitle}</h2>
             <YoutubeEmbed
               videoId="-BvcToPZCLI"
               title="The most important thing you can do to fight climate change: talk about it"
@@ -67,7 +67,7 @@ export function ProblemPage() {
           </div>
         </Reveal>
 
-        <p className="text-slate-500 text-xs text-center">{p.sourcesFooter}</p>
+        <p className="text-[var(--text-soft)] text-xs text-center">{p.sourcesFooter}</p>
       </div>
     </div>
   )

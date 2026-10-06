@@ -13,7 +13,7 @@ const SIZE_CLASSES: Record<'sm' | 'md', string> = {
 export function NumberBadge({ n, size = 'md', className = '' }: NumberBadgeProps) {
   return (
     <span
-      className={`inline-flex items-center justify-center shrink-0 rounded-full bg-white/5 border border-white/15 font-bold text-sky-300 ${SIZE_CLASSES[size]} ${className}`}
+      className={`inline-flex items-center justify-center shrink-0 rounded-full bg-[var(--accent-soft)] border border-[var(--border)] label-mono font-bold text-[var(--accent)] ${SIZE_CLASSES[size]} ${className}`}
     >
       {n}
     </span>

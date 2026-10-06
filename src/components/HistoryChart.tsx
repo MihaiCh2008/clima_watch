@@ -6,7 +6,7 @@ export function HistoryChart({ history }: { history: HistoryPoint[] }) {
   const { t } = useLanguage()
   return (
     <div className="glass-card rounded-2xl p-5 sm:p-6">
-      <h3 className="text-lg font-extrabold heading-font text-white mb-4">{t.home.historyTitle}</h3>
+      <h3 className="text-lg font-extrabold heading-font text-[var(--text)] mb-4">{t.home.historyTitle}</h3>
       <div className="flex items-end justify-between gap-2 h-32">
         {history.map((point, i) => {
           const level = safeAqi(point.aqi)
@@ -20,12 +20,12 @@ export function HistoryChart({ history }: { history: HistoryPoint[] }) {
                   style={{ height: `${heightPercent}%` }}
                 ></div>
               </div>
-              <span className="text-[10px] sm:text-xs text-slate-500 text-center">{point.day}</span>
+              <span className="text-[10px] sm:text-xs label-mono text-[var(--text-soft)] text-center">{point.day}</span>
             </div>
           )
         })}
       </div>
-      <p className="text-slate-500 text-xs mt-3 italic">{t.home.historyNote}</p>
+      <p className="text-[var(--text-soft)] text-xs mt-3 italic">{t.home.historyNote}</p>
     </div>
   )
 }

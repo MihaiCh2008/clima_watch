@@ -1,112 +1,78 @@
-@import url('https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
 @import "tailwindcss";
 
 :root {
-  --accent-cyan: #38bdf8;
-  --accent-blue: #60a5fa;
-  --accent-teal: #2dd4bf;
+  --bg: #f7f4ea;
+  --bg-card: #fffdf6;
+  --bg-dark: #10201a;
+  --text: #1b2a21;
+  --text-muted: #5c6b5e;
+  --text-soft: #8d9890;
+  --border: #e1dcc9;
+  --accent: #1f6f4a;
+  --accent-ink: #f7f4ea;
+  --accent-soft: #dbe7d3;
+  --accent-2: #2a7f8c;
 }
 
 html,
 body {
-  background: #05070f;
+  background: var(--bg);
 }
 
 body {
-  font-family: 'Public Sans', system-ui, sans-serif;
+  font-family: 'Inter', system-ui, sans-serif;
+  color: var(--text);
 }
 
 .heading-font {
-  font-family: 'Public Sans', system-ui, sans-serif;
+  font-family: 'Instrument Serif', Georgia, serif;
+}
+
+.label-mono {
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
 }
 
 /* Custom scrollbar */
 * {
-  scrollbar-color: #334155 #05070f;
+  scrollbar-color: var(--border) var(--bg);
 }
 ::-webkit-scrollbar {
   width: 10px;
 }
 ::-webkit-scrollbar-track {
-  background: #05070f;
+  background: var(--bg);
 }
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(var(--accent-cyan), var(--accent-blue));
+  background: var(--text-soft);
   border-radius: 999px;
 }
 
-/* Glassy card with a soft glow on hover */
+/* Card with a hairline border and a soft lift on hover */
 .glass-card {
   position: relative;
-  background: rgba(30, 41, 59, 0.5);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  border: 1px solid rgba(148, 163, 184, 0.14);
+  background: var(--bg-card);
+  border: 1px solid var(--border);
   transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
 }
 .glass-card:hover {
   transform: translateY(-2px);
-  border-color: rgba(56, 189, 248, 0.35);
-  box-shadow: 0 10px 30px -14px rgba(56, 189, 248, 0.28);
+  border-color: var(--accent);
+  box-shadow: 0 10px 30px -18px rgba(27, 42, 33, 0.25);
 }
 
-/* Button with a soft glow */
+/* Solid primary button */
 .glow-btn {
-  background: linear-gradient(135deg, var(--accent-cyan), var(--accent-blue));
-  box-shadow: 0 0 16px rgba(56, 189, 248, 0.32);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  background: var(--accent);
+  color: var(--accent-ink);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
 }
 .glow-btn:hover {
-  transform: translateY(-2px) scale(1.02);
-  box-shadow: 0 0 22px rgba(56, 189, 248, 0.45);
+  transform: translateY(-2px);
+  background: #195c3d;
 }
 .glow-btn:disabled {
   transform: none;
-}
-
-/* Background blobs (aurora) */
-@keyframes blob-move {
-  0%,
-  100% {
-    transform: translate(0, 0) scale(1);
-  }
-  33% {
-    transform: translate(40px, -30px) scale(1.12);
-  }
-  66% {
-    transform: translate(-30px, 25px) scale(0.94);
-  }
-}
-.aurora-blob {
-  position: absolute;
-  border-radius: 9999px;
-  filter: blur(90px);
-  animation: blob-move 18s ease-in-out infinite;
-}
-
-/* Floating particles */
-@keyframes float-up {
-  0% {
-    transform: translateY(0) translateX(0) rotate(0deg);
-    opacity: 0;
-  }
-  10% {
-    opacity: 0.7;
-  }
-  90% {
-    opacity: 0.35;
-  }
-  100% {
-    transform: translateY(-110vh) translateX(25px) rotate(180deg);
-    opacity: 0;
-  }
-}
-.particle {
-  position: absolute;
-  bottom: -10%;
-  animation: float-up linear infinite;
-  pointer-events: none;
-  user-select: none;
 }
 
 /* Alert pulse (for urgent recommendations) */
@@ -133,7 +99,7 @@ body {
   }
 }
 .skeleton-shimmer {
-  background: linear-gradient(100deg, rgba(30, 41, 59, 0.7) 30%, rgba(56, 189, 248, 0.18) 50%, rgba(30, 41, 59, 0.7) 70%);
+  background: linear-gradient(100deg, rgba(225, 220, 201, 0.6) 30%, rgba(255, 253, 246, 0.9) 50%, rgba(225, 220, 201, 0.6) 70%);
   background-size: 200% 100%;
   animation: shimmer 1.6s linear infinite;
 }

@@ -1,26 +1,14 @@
-import { Route, Routes, useLocation } from 'react-router-dom'
+import { Route, Routes } from 'react-router-dom'
 import { Navbar } from './components/Navbar'
-import { AuroraBackground } from './components/AuroraBackground'
-import { PageBackground, type BackgroundVariant } from './components/PageBackground'
 import { LanguageProvider } from './i18n/LanguageContext'
 import { HomePage } from './pages/HomePage'
 import { ProfilePage } from './pages/ProfilePage'
 import { ProblemPage } from './pages/ProblemPage'
 import { SolutionPage } from './pages/SolutionPage'
 
-function backgroundForRoute(pathname: string): BackgroundVariant {
-  if (pathname === '/problem') return 'factory'
-  if (pathname === '/solution') return 'mountain'
-  return 'planet'
-}
-
 function AppShell() {
-  const location = useLocation()
-
   return (
-    <div className="min-h-screen bg-[#05070f] text-white p-4 sm:p-6 relative z-0 overflow-x-hidden">
-      <AuroraBackground />
-      <PageBackground variant={backgroundForRoute(location.pathname)} />
+    <div className="min-h-screen bg-[var(--bg)] text-[var(--text)] p-4 sm:p-6 relative z-0 overflow-x-hidden">
       <Navbar />
       <div className="relative z-10">
         <Routes>

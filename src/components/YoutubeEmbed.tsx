@@ -17,8 +17,8 @@ export function YoutubeEmbed({ videoId, title, credit }: YoutubeEmbedProps) {
         />
       </div>
       <div className="p-4">
-        <p className="font-medium heading-font">{title}</p>
-        <p className="text-slate-500 text-xs mt-1">{credit}</p>
+        <p className="font-medium heading-font text-[var(--text)]">{title}</p>
+        <p className="text-[var(--text-soft)] text-xs mt-1">{credit}</p>
       </div>
     </div>
   )
