@@ -14,7 +14,7 @@ export function ProblemPage() {
 
   return (
     <div>
-      <div className="max-w-2xl mx-auto relative space-y-10">
+      <div className="max-w-3xl mx-auto relative space-y-10">
         <SideNote n={1} text={p.sideNote1} source={p.sideNote1Source} wrapperClassName="top-4 right-full mr-10" accent="bg-[var(--accent)]/70" />
         <SideNote n={2} text={p.sideNote2} source={p.sideNote2Source} wrapperClassName="top-[26rem] left-full ml-10" accent="bg-[var(--accent-2)]/70" />
         <SideNote n={3} text={p.sideNote3} source={p.sideNote3Source} wrapperClassName="top-[50rem] right-full mr-10" accent="bg-[var(--accent-2)]/70" />

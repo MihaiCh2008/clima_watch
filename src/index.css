@@ -1,6 +1,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
 @import "tailwindcss";
 
+@theme {
+  --text-xs--line-height: 1.6;
+  --text-sm--line-height: 1.7;
+  --text-base--line-height: 1.75;
+  --text-lg--line-height: 1.7;
+  --text-xl--line-height: 1.5;
+  --text-2xl--line-height: 1.45;
+  --text-3xl--line-height: 1.35;
+  --text-4xl--line-height: 1.25;
+  --text-5xl--line-height: 1.2;
+}
+
 :root {
   --bg: #f7f4ea;
   --bg-card: #fffdf6;
@@ -23,6 +35,8 @@ body {
 body {
   font-family: 'Inter', system-ui, sans-serif;
   color: var(--text);
+  letter-spacing: 0.012em;
+  word-spacing: 0.04em;
 }
 
 .heading-font {

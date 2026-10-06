@@ -35,7 +35,7 @@ export function SolutionPage() {
 
   return (
     <div>
-      <div className="max-w-2xl mx-auto relative space-y-10">
+      <div className="max-w-3xl mx-auto relative space-y-10">
         <SideNote n={1} text={s.sideNote1} wrapperClassName="top-4 right-full mr-10" accent="bg-[var(--accent-2)]/70" />
         <SideNote n={2} text={s.sideNote2} source={s.sideNote2Source} wrapperClassName="top-[34rem] left-full ml-10" accent="bg-[var(--accent)]/70" />
 

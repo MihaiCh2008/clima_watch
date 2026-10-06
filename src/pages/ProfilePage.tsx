@@ -37,7 +37,7 @@ export function ProfilePage() {
 
   return (
     <div>
-      <div className="max-w-2xl mx-auto relative">
+      <div className="max-w-3xl mx-auto relative">
         <SideNote
           n={1}
           text={t.profile.sideNote1}
