@@ -49,6 +49,8 @@ describe('getAirQuality', () => {
     if (result.status === 200) {
       expect(result.body).toEqual({
         cityName: 'Bucharest',
+        lat: 44.43,
+        lon: 26.1,
         aqi: 2,
         components: { pm2_5: 3.7, pm10: 4.3, co: 128.5, no2: 1.2, o3: 89.7 },
       })

@@ -15,15 +15,15 @@
 
 :root {
   color-scheme: light;
-  --bg: #f7f4ea;
-  --bg-card: #fffdf6;
+  --bg: #ffffff;
+  --bg-card: #f4f6f8;
   --bg-dark: #10201a;
   --text: #1b2a21;
   --text-muted: #5c6b5e;
   --text-soft: #8d9890;
-  --border: #e1dcc9;
+  --border: #e9ecef;
   --accent: #1d4f73;
-  --accent-ink: #f7f4ea;
+  --accent-ink: #ffffff;
   --accent-soft: #dbe6ec;
   --accent-2: #2f8f9e;
 }
@@ -64,16 +64,14 @@ body {
   border-radius: 999px;
 }
 
-/* Card with a hairline border and a soft lift on hover */
+/* Borderless card on a subtle fill, with a soft lift on hover */
 .glass-card {
   position: relative;
   background: var(--bg-card);
-  border: 1px solid var(--border);
-  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 .glass-card:hover {
   transform: translateY(-2px);
-  border-color: var(--accent);
   box-shadow: 0 10px 30px -18px rgba(27, 42, 33, 0.25);
 }
 
@@ -115,7 +113,7 @@ body {
   }
 }
 .skeleton-shimmer {
-  background: linear-gradient(100deg, rgba(225, 220, 201, 0.6) 30%, rgba(255, 253, 246, 0.9) 50%, rgba(225, 220, 201, 0.6) 70%);
+  background: linear-gradient(100deg, rgba(233, 236, 239, 0.8) 30%, rgba(255, 255, 255, 0.95) 50%, rgba(233, 236, 239, 0.8) 70%);
   background-size: 200% 100%;
   animation: shimmer 1.6s linear infinite;
 }
@@ -138,4 +136,93 @@ body {
   animation: smog-rise 4s ease-in infinite;
   transform-box: fill-box;
   transform-origin: center;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* History chart: the line draws itself, the area fades in, the dots pop in one by one */
+@keyframes draw-line {
+  from {
+    stroke-dashoffset: 1;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+@keyframes dot-pop {
+  from {
+    opacity: 0;
+    transform: scale(0);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+.chart-line {
+  stroke-dasharray: 1;
+  animation: draw-line 1.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+.chart-area {
+  opacity: 0;
+  animation: fadeIn 0.8s ease-out 0.7s forwards;
+}
+.chart-dot {
+  opacity: 0;
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: dot-pop 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .chart-line,
+  .chart-area,
+  .chart-dot {
+    animation: none;
+    opacity: 1;
+    stroke-dasharray: none;
+  }
+}
+
+/* Range sliders: one consistent look whatever the accent color; --slider-color and --fill are set inline */
+.range-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 8px;
+  border-radius: 999px;
+  outline: none;
+  background: linear-gradient(to right, var(--slider-color) var(--fill, 0%), var(--border) var(--fill, 0%));
+}
+.range-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 999px;
+  background: #fff;
+  border: 3px solid var(--slider-color);
+  box-shadow: 0 1px 4px rgba(27, 42, 33, 0.25);
+  cursor: pointer;
+}
+.range-slider::-moz-range-thumb {
+  width: 14px;
+  height: 14px;
+  border-radius: 999px;
+  background: #fff;
+  border: 3px solid var(--slider-color);
+  box-shadow: 0 1px 4px rgba(27, 42, 33, 0.25);
+  cursor: pointer;
+}
+.range-slider::-moz-range-track {
+  background: transparent;
+}
+.range-slider:focus-visible::-webkit-slider-thumb {
+  box-shadow: 0 0 0 4px rgba(29, 79, 115, 0.25);
 }

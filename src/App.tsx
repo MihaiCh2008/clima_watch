@@ -1,6 +1,9 @@
 import { Route, Routes } from 'react-router-dom'
+import { BreathingBackground } from './components/BreathingBackground'
 import { Navbar } from './components/Navbar'
+import { AirMoodProvider } from './context/AirMoodProvider'
 import { LanguageProvider } from './i18n/LanguageContext'
+import { ComparePage } from './pages/ComparePage'
 import { HomePage } from './pages/HomePage'
 import { ProfilePage } from './pages/ProfilePage'
 import { ProblemPage } from './pages/ProblemPage'
@@ -9,12 +12,14 @@ import { SolutionPage } from './pages/SolutionPage'
 function AppShell() {
   return (
     <div className="min-h-screen bg-[var(--bg)] text-[var(--text)] p-4 sm:p-6 relative z-0 overflow-x-hidden">
+      <BreathingBackground />
       <Navbar />
       <div className="relative z-10">
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/problem" element={<ProblemPage />} />
           <Route path="/solution" element={<SolutionPage />} />
+          <Route path="/compare" element={<ComparePage />} />
           <Route path="/profile" element={<ProfilePage />} />
         </Routes>
       </div>
@@ -25,7 +30,9 @@ function AppShell() {
 function App() {
   return (
     <LanguageProvider>
-      <AppShell />
+      <AirMoodProvider>
+        <AppShell />
+      </AirMoodProvider>
     </LanguageProvider>
   )
 }

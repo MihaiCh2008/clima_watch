@@ -1,3 +1,4 @@
+import { DayPlanner } from '../components/DayPlanner'
 import { useProfile } from '../hooks/useProfile'
 import { SideNote } from '../components/SideNote'
 import { useLanguage } from '../i18n/LanguageContext'
@@ -82,7 +83,9 @@ export function ProfilePage() {
           </div>
         )}
 
-        <div className="mt-6 glass-card rounded-lg p-5 text-sm text-[var(--text-muted)]">{t.profile.footerNote}</div>
+        <DayPlanner profile={profile} />
+
+        <div className="mt-10 glass-card rounded-lg p-5 text-sm text-[var(--text-muted)]">{t.profile.footerNote}</div>
       </div>
     </div>
   )

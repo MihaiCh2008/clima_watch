@@ -11,6 +11,7 @@ export interface Translation {
     problem: string
     solution: string
     live: string
+    compare: string
     profile: string
   }
   home: {
@@ -23,10 +24,11 @@ export interface Translation {
     recommendationTitle: string
     historyTitle: string
     historyNote: string
+    historyLoading: string
+    historyError: string
     sideNote1: string
     sideNote1Source: string
     sideNote2: string
-    days: [string, string, string, string, string, string, string]
     globalContextTitle: string
     co2Label: string
     co2Source: string
@@ -34,6 +36,85 @@ export interface Translation {
     tempSource: string
     parisLabel: string
     localSignalTitle: string
+  }
+  globe: {
+    title: string
+    subtitle: string
+    loading: string
+    error: string
+    hint: string
+    idle: string
+    ariaLabel: string
+  }
+  mood: {
+    reacts: string
+  }
+  impact: {
+    title: string
+    subtitle: string
+    car: string
+    carUnit: string
+    transit: string
+    transitUnit: string
+    meat: string
+    meatUnit: string
+    flights: string
+    flightsUnit: string
+    total: string
+    unit: string
+    less: string
+    more: string
+    same: string
+    trees: string
+    treeUnit: string
+    treesZero: string
+    ecoPlan: string
+    reset: string
+    howTitle: string
+    howCar: string
+    howTransit: string
+    howMeat: string
+    howFlights: string
+    howTrees: string
+    baselineNote: string
+  }
+  planner: {
+    title: string
+    subtitle: string
+    cityLabel: string
+    placeholder: string
+    button: string
+    planning: string
+    notFound: string
+    error: string
+    forCity: string
+    best: string
+    avoid: string
+    allGood: string
+    pm: string
+    sensitiveNote: string
+    exerciseNote: string
+    now: string
+    deviceTime: string
+    hint: string
+  }
+  compare: {
+    subtitle: string
+    labelA: string
+    labelB: string
+    placeholderA: string
+    placeholderB: string
+    button: string
+    running: string
+    examplesTitle: string
+    lowerIsBetter: string
+    pollutantsTitle: string
+    winner: string
+    winnerDetail: string
+    tie: string
+    sameCity: string
+    missing: string
+    notFound: string
   }
   problem: {
     intro: string
@@ -121,6 +202,7 @@ export const translations: Record<Lang, Translation> = {
       problem: 'Problema',
       solution: 'Soluția',
       live: 'Verifică live',
+      compare: 'Compară',
       profile: 'Profilul meu',
     },
     home: {
@@ -132,11 +214,12 @@ export const translations: Record<Lang, Translation> = {
       errorGeneric: 'A apărut o eroare. Încearcă din nou.',
       recommendationTitle: 'Ce ar trebui să faci azi',
       historyTitle: 'Evoluție ultimele 7 zile',
-      historyNote: '* Date orientative — conectăm istoric real în curând',
+      historyNote: 'Media zilnică de PM2.5 (μg/m³) — date reale din istoricul OpenWeatherMap.',
+      historyLoading: 'Încarc istoricul real…',
+      historyError: 'Nu am putut încărca istoricul acum.',
       sideNote1: 'Arderea combustibililor fosili e principala sursă atât pentru poluarea aerului, cât și pentru încălzirea globală.',
       sideNote1Source: 'NASA / IPCC',
       sideNote2: 'Calitatea aerului se poate schimba semnificativ de la o oră la alta — verific-o des.',
-      days: ['Acum 6 zile', 'Acum 5 zile', 'Acum 4 zile', 'Acum 3 zile', 'Acum 2 zile', 'Ieri', 'Azi'],
       globalContextTitle: 'Contextul climatic global, azi',
       co2Label: 'CO2 în atmosferă',
       co2Source: 'NASA, mai 2025',
@@ -144,6 +227,86 @@ export const translations: Record<Lang, Translation> = {
       tempSource: 'NASA / Carbon Brief',
       parisLabel: 'ani de la Acordul de la Paris',
       localSignalTitle: 'Semnalul local: aerul din orașul tău',
+    },
+    globe: {
+      title: 'Calitatea aerului în lume',
+      subtitle: 'Citiri live pentru orașe mari — rotește globul și apasă pe un punct.',
+      loading: 'Încarc citirile live…',
+      error: 'Nu am putut încărca citirile orașelor.',
+      hint: 'Trage ca să rotești · apasă pe un punct ca să verifici orașul',
+      idle: 'Treci cu mouse-ul peste un punct ca să vezi aerul live',
+      ariaLabel: 'Glob interactiv cu calitatea aerului în orașele lumii',
+    },
+    mood: {
+      reacts: 'Fundalul respiră odată cu aerul din {city}',
+    },
+    impact: {
+      title: 'Laboratorul tău de impact',
+      subtitle: 'Mută cursoarele și vezi cum alegerile de zi cu zi îți schimbă CO2 pe an — și câți copaci ar fi nevoie ca să-l absoarbă.',
+      car: 'Cu mașina',
+      carUnit: 'km / săptămână',
+      transit: 'Cu autobuzul sau trenul',
+      transitUnit: 'km / săptămână',
+      meat: 'Mese cu carne',
+      meatUnit: 'mese / săptămână',
+      flights: 'Zboruri dus-întors',
+      flightsUnit: 'pe an',
+      total: 'Amprenta ta anuală din aceste patru alegeri',
+      unit: 't CO2 / an',
+      less: 'Cu {pct}% mai puțin decât stilul de viață obișnuit',
+      more: 'Cu {pct}% mai mult decât stilul de viață obișnuit',
+      same: 'La fel ca stilul de viață obișnuit',
+      trees: '≈ {n} copaci care lucrează un an întreg ca să absoarbă asta',
+      treeUnit: 'Fiecare copac din desen = {k} copaci',
+      treesZero: 'Nu mai e nimic de compensat — bravo!',
+      ecoPlan: 'Încearcă planul eco',
+      reset: 'Resetează',
+      howTitle: 'Cum se calculează?',
+      howCar: 'Mașină: 0,17 kg CO2 pe km (autoturism mediu, factori de conversie ai guvernului britanic).',
+      howTransit: 'Autobuz sau tren: 0,07 kg CO2 pe km (media dintre autobuz ≈ 0,10 și tren ≈ 0,035).',
+      howMeat: 'Mese cu carne: cu 1,13 kg CO2 mai mult decât o masă vegetariană (derivat din Scarborough et al., 2014, Climatic Change).',
+      howFlights: 'Zboruri: o călătorie dus-întors de 4.000 km la 0,15 kg CO2 pe pasager-km = 600 kg.',
+      howTrees: 'Copaci: un copac matur absoarbe în jur de 21 kg CO2 pe an (o medie des citată).',
+      baselineNote:
+        'Stil de viață obișnuit = 120 km cu mașina, 40 km cu autobuzul sau trenul și 10 mese cu carne pe săptămână, plus un zbor dus-întors pe an. Sunt estimări, nu un audit complet de carbon.',
+    },
+    planner: {
+      title: 'Ziua ta, oră cu oră',
+      subtitle: 'Scrie orașul tău și planificăm următoarele 24 de ore în funcție de aerul pe care îl vei respira — adaptat profilului tău.',
+      cityLabel: 'Orașul tău',
+      placeholder: 'ex: Chisinau',
+      button: 'Planifică-mi ziua',
+      planning: 'Planific',
+      notFound: 'Nu am găsit orașul. Verifică denumirea.',
+      error: 'Nu am putut încărca prognoza. Încearcă din nou.',
+      forCity: 'Prognoză pentru {city}',
+      best: 'Cel mai bun moment ca să ieși afară',
+      avoid: 'Orele de evitat',
+      allGood: 'Aerul rămâne bun toată ziua — nu sunt ore de evitat.',
+      pm: 'PM2.5 {value} μg/m³ în medie',
+      sensitiveNote: 'Din cauza profilului tău, nivelurile sunt marcate cu o treaptă mai devreme decât pentru majoritatea oamenilor.',
+      exerciseNote: 'Faci sport afară, așa că căutăm cea mai curată fereastră de 2 ore.',
+      now: 'Acum',
+      deviceTime: 'Orele sunt în fusul orar al dispozitivului tău.',
+      hint: 'Treci cu mouse-ul sau atinge o oră pentru detalii.',
+    },
+    compare: {
+      subtitle: 'Alege două orașe și vezi al cui aer e mai curat — live.',
+      labelA: 'Orașul A',
+      labelB: 'Orașul B',
+      placeholderA: 'ex: Bucuresti',
+      placeholderB: 'ex: Delhi',
+      button: 'Pornește cursa',
+      running: 'Cursa începe',
+      examplesTitle: 'Încearcă o confruntare',
+      lowerIsBetter: 'Mai mic e mai bine',
+      pollutantsTitle: 'Poluant cu poluant',
+      winner: 'În {city} se respiră mai curat',
+      winnerDetail: 'Cu {pct}% mai puțin PM2.5 decât în {other}',
+      tie: 'Egalitate — aerul e la fel de curat în ambele orașe.',
+      sameCity: 'Alege două orașe diferite.',
+      missing: 'Scrie ambele orașe.',
+      notFound: 'Nu am găsit „{city}". Verifică denumirea.',
     },
     problem: {
       intro:
@@ -257,6 +420,7 @@ export const translations: Record<Lang, Translation> = {
       problem: 'Problem',
       solution: 'Solution',
       live: 'Live check',
+      compare: 'Compare',
       profile: 'My profile',
     },
     home: {
@@ -268,11 +432,12 @@ export const translations: Record<Lang, Translation> = {
       errorGeneric: 'Something went wrong. Please try again.',
       recommendationTitle: 'What you should do today',
       historyTitle: 'Trend over the last 7 days',
-      historyNote: '* Illustrative data — real history is coming soon',
+      historyNote: 'Daily average PM2.5 (μg/m³) — real data from the OpenWeatherMap history.',
+      historyLoading: 'Loading real history…',
+      historyError: "Couldn't load the history right now.",
       sideNote1: 'Burning fossil fuels is the main source of both air pollution and global warming.',
       sideNote1Source: 'NASA / IPCC',
       sideNote2: 'Air quality can change significantly from hour to hour — check it often.',
-      days: ['6 days ago', '5 days ago', '4 days ago', '3 days ago', '2 days ago', 'Yesterday', 'Today'],
       globalContextTitle: "Today's global climate context",
       co2Label: 'CO2 in the atmosphere',
       co2Source: 'NASA, May 2025',
@@ -280,6 +445,86 @@ export const translations: Record<Lang, Translation> = {
       tempSource: 'NASA / Carbon Brief',
       parisLabel: 'years since the Paris Agreement',
       localSignalTitle: "The local signal: your city's air",
+    },
+    globe: {
+      title: 'Air quality around the world',
+      subtitle: 'Live readings for major cities — spin the globe and click a dot.',
+      loading: 'Loading live readings…',
+      error: "Couldn't load the city readings.",
+      hint: 'Drag to rotate · click a dot to check that city',
+      idle: 'Hover a dot to see the live air quality',
+      ariaLabel: 'Interactive globe showing air quality in cities around the world',
+    },
+    mood: {
+      reacts: 'The background breathes with the air in {city}',
+    },
+    impact: {
+      title: 'Your impact lab',
+      subtitle: 'Move the sliders to see how everyday choices change your yearly CO2 — and how many trees it would take to absorb it.',
+      car: 'By car',
+      carUnit: 'km / week',
+      transit: 'By bus or train',
+      transitUnit: 'km / week',
+      meat: 'Meat-based meals',
+      meatUnit: 'meals / week',
+      flights: 'Return flights',
+      flightsUnit: 'per year',
+      total: 'Your yearly footprint from these four choices',
+      unit: 't CO2 / year',
+      less: '{pct}% less than the typical lifestyle',
+      more: '{pct}% more than the typical lifestyle',
+      same: 'The same as the typical lifestyle',
+      trees: '≈ {n} trees working for a full year to absorb this',
+      treeUnit: 'Each tree icon = {k} trees',
+      treesZero: 'Nothing left to offset — great job!',
+      ecoPlan: 'Try the eco plan',
+      reset: 'Reset',
+      howTitle: 'How is this calculated?',
+      howCar: 'Car: 0.17 kg CO2 per km (average passenger car, UK government conversion factors).',
+      howTransit: 'Bus or train: 0.07 kg CO2 per km (average of bus ≈ 0.10 and rail ≈ 0.035).',
+      howMeat: 'Meat meals: 1.13 kg CO2 more than a vegetarian meal (derived from Scarborough et al., 2014, Climatic Change).',
+      howFlights: 'Flights: a 4,000 km return trip at 0.15 kg CO2 per passenger-km = 600 kg.',
+      howTrees: 'Trees: a mature tree absorbs about 21 kg CO2 a year (a widely cited average).',
+      baselineNote:
+        'Typical lifestyle = 120 km by car, 40 km by bus or train and 10 meat meals a week, plus one return flight a year. These are estimates, not a full carbon audit.',
+    },
+    planner: {
+      title: 'Your day, hour by hour',
+      subtitle: 'Enter your home city and we plan the next 24 hours around the air you will actually breathe — adjusted to your profile.',
+      cityLabel: 'Home city',
+      placeholder: 'e.g. Chisinau',
+      button: 'Plan my day',
+      planning: 'Planning',
+      notFound: 'Could not find that city. Check the spelling.',
+      error: "Couldn't load the forecast. Try again.",
+      forCity: 'Forecast for {city}',
+      best: 'Best time to be outside',
+      avoid: 'Hours to avoid',
+      allGood: 'The air stays good all day — no hours to avoid.',
+      pm: 'PM2.5 {value} μg/m³ on average',
+      sensitiveNote: 'Because of your profile, levels are flagged one step earlier than for most people.',
+      exerciseNote: 'You exercise outdoors, so we look for the cleanest 2-hour window.',
+      now: 'Now',
+      deviceTime: 'Times are in your device time zone.',
+      hint: 'Hover or tap an hour for details.',
+    },
+    compare: {
+      subtitle: "Pick two cities and see whose air is cleaner — live.",
+      labelA: 'City A',
+      labelB: 'City B',
+      placeholderA: 'e.g. Bucharest',
+      placeholderB: 'e.g. Delhi',
+      button: 'Start the race',
+      running: 'Racing',
+      examplesTitle: 'Try a matchup',
+      lowerIsBetter: 'Lower is better',
+      pollutantsTitle: 'Pollutant by pollutant',
+      winner: '{city} breathes cleaner',
+      winnerDetail: '{pct}% less PM2.5 than {other}',
+      tie: "It's a tie — the air is equally clean in both cities.",
+      sameCity: 'Pick two different cities.',
+      missing: 'Enter both cities.',
+      notFound: 'Could not find "{city}". Check the spelling.',
     },
     problem: {
       intro:
@@ -393,6 +638,7 @@ export const translations: Record<Lang, Translation> = {
       problem: 'Проблема',
       solution: 'Решение',
       live: 'Проверить сейчас',
+      compare: 'Сравнить',
       profile: 'Мой профиль',
     },
     home: {
@@ -404,11 +650,12 @@ export const translations: Record<Lang, Translation> = {
       errorGeneric: 'Произошла ошибка. Попробуйте снова.',
       recommendationTitle: 'Что стоит сделать сегодня',
       historyTitle: 'Динамика за последние 7 дней',
-      historyNote: '* Ориентировочные данные — скоро подключим реальную историю',
+      historyNote: 'Среднесуточный PM2.5 (мкг/м³) — реальные данные из истории OpenWeatherMap.',
+      historyLoading: 'Загружаю реальную историю…',
+      historyError: 'Сейчас не удалось загрузить историю.',
       sideNote1: 'Сжигание ископаемого топлива — главный источник и загрязнения воздуха, и глобального потепления.',
       sideNote1Source: 'NASA / IPCC',
       sideNote2: 'Качество воздуха может сильно меняться от часа к часу — проверяйте чаще.',
-      days: ['6 дней назад', '5 дней назад', '4 дня назад', '3 дня назад', '2 дня назад', 'Вчера', 'Сегодня'],
       globalContextTitle: 'Глобальный климатический контекст сегодня',
       co2Label: 'CO2 в атмосфере',
       co2Source: 'NASA, май 2025',
@@ -416,6 +663,86 @@ export const translations: Record<Lang, Translation> = {
       tempSource: 'NASA / Carbon Brief',
       parisLabel: 'лет с момента Парижского соглашения',
       localSignalTitle: 'Локальный сигнал: воздух в вашем городе',
+    },
+    globe: {
+      title: 'Качество воздуха в мире',
+      subtitle: 'Данные в реальном времени по крупным городам — вращайте глобус и нажимайте на точки.',
+      loading: 'Загружаю данные…',
+      error: 'Не удалось загрузить данные по городам.',
+      hint: 'Потяните, чтобы вращать · нажмите на точку, чтобы проверить город',
+      idle: 'Наведите на точку, чтобы увидеть воздух в реальном времени',
+      ariaLabel: 'Интерактивный глобус с качеством воздуха в городах мира',
+    },
+    mood: {
+      reacts: 'Фон «дышит» вместе с воздухом в городе {city}',
+    },
+    impact: {
+      title: 'Лаборатория вашего влияния',
+      subtitle: 'Двигайте ползунки и смотрите, как повседневные выборы меняют ваш годовой CO2 — и сколько деревьев нужно, чтобы его поглотить.',
+      car: 'На машине',
+      carUnit: 'км / неделю',
+      transit: 'На автобусе или поезде',
+      transitUnit: 'км / неделю',
+      meat: 'Приёмы пищи с мясом',
+      meatUnit: 'раз / неделю',
+      flights: 'Перелёты туда-обратно',
+      flightsUnit: 'в год',
+      total: 'Ваш годовой след от этих четырёх выборов',
+      unit: 'т CO2 / год',
+      less: 'На {pct}% меньше, чем при обычном образе жизни',
+      more: 'На {pct}% больше, чем при обычном образе жизни',
+      same: 'Так же, как при обычном образе жизни',
+      trees: '≈ {n} деревьев, работающих целый год, чтобы поглотить это',
+      treeUnit: 'Каждое дерево на рисунке = {k} деревьев',
+      treesZero: 'Компенсировать нечего — отлично!',
+      ecoPlan: 'Попробовать эко-план',
+      reset: 'Сбросить',
+      howTitle: 'Как это считается?',
+      howCar: 'Машина: 0,17 кг CO2 на км (средний легковой автомобиль, коэффициенты правительства Великобритании).',
+      howTransit: 'Автобус или поезд: 0,07 кг CO2 на км (среднее между автобусом ≈ 0,10 и поездом ≈ 0,035).',
+      howMeat: 'Мясные блюда: на 1,13 кг CO2 больше, чем вегетарианское (на основе Scarborough et al., 2014, Climatic Change).',
+      howFlights: 'Перелёты: поездка туда-обратно на 4 000 км при 0,15 кг CO2 на пассажиро-км = 600 кг.',
+      howTrees: 'Деревья: зрелое дерево поглощает около 21 кг CO2 в год (широко цитируемая оценка).',
+      baselineNote:
+        'Обычный образ жизни = 120 км на машине, 40 км на автобусе или поезде и 10 мясных приёмов пищи в неделю, плюс один перелёт туда-обратно в год. Это оценки, а не полный углеродный аудит.',
+    },
+    planner: {
+      title: 'Ваш день по часам',
+      subtitle: 'Введите свой город — и мы спланируем ближайшие 24 часа с учётом воздуха, которым вы будете дышать, и вашего профиля.',
+      cityLabel: 'Ваш город',
+      placeholder: 'напр. Кишинёв',
+      button: 'Спланировать день',
+      planning: 'Планирую',
+      notFound: 'Не удалось найти город. Проверьте название.',
+      error: 'Не удалось загрузить прогноз. Попробуйте снова.',
+      forCity: 'Прогноз для города {city}',
+      best: 'Лучшее время для прогулки',
+      avoid: 'Часы, которых лучше избегать',
+      allGood: 'Воздух остаётся хорошим весь день — избегать нечего.',
+      pm: 'PM2.5 {value} мкг/м³ в среднем',
+      sensitiveNote: 'Из-за вашего профиля уровни отмечаются на ступень раньше, чем для большинства людей.',
+      exerciseNote: 'Вы занимаетесь спортом на улице, поэтому мы ищем самое чистое двухчасовое окно.',
+      now: 'Сейчас',
+      deviceTime: 'Время указано в часовом поясе вашего устройства.',
+      hint: 'Наведите курсор или коснитесь часа, чтобы увидеть детали.',
+    },
+    compare: {
+      subtitle: 'Выберите два города и узнайте, где воздух чище, — в реальном времени.',
+      labelA: 'Город A',
+      labelB: 'Город B',
+      placeholderA: 'напр. Бухарест',
+      placeholderB: 'напр. Дели',
+      button: 'Начать гонку',
+      running: 'Гонка идёт',
+      examplesTitle: 'Попробуйте противостояние',
+      lowerIsBetter: 'Чем меньше, тем лучше',
+      pollutantsTitle: 'Загрязнитель за загрязнителем',
+      winner: 'В городе {city} воздух чище',
+      winnerDetail: 'На {pct}% меньше PM2.5, чем в {other}',
+      tie: 'Ничья — воздух одинаково чист в обоих городах.',
+      sameCity: 'Выберите два разных города.',
+      missing: 'Введите оба города.',
+      notFound: 'Не удалось найти «{city}». Проверьте название.',
     },
     problem: {
       intro:

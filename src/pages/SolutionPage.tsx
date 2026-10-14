@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import { ImpactLab } from '../components/ImpactLab'
 import { Reveal } from '../components/Reveal'
 import { SideNote } from '../components/SideNote'
 import { OrgLinkPanel } from '../components/OrgLinkPanel'
@@ -75,6 +76,10 @@ export function SolutionPage() {
             <h2 className="text-xl font-extrabold heading-font text-[var(--text)] mb-3">{s.impactTitle}</h2>
             <p className="text-[var(--text-muted)] text-sm">{s.impactText}</p>
           </div>
+        </Reveal>
+
+        <Reveal>
+          <ImpactLab />
         </Reveal>
 
         <Reveal>

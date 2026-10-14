@@ -9,6 +9,7 @@ export function Navbar() {
     { to: '/problem', label: t.nav.problem, end: false },
     { to: '/solution', label: t.nav.solution, end: false },
     { to: '/', label: t.nav.live, end: true },
+    { to: '/compare', label: t.nav.compare, end: false },
     { to: '/profile', label: t.nav.profile, end: false },
   ]
 

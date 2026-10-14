@@ -23,7 +23,7 @@ export function OrgLinkPanel({ n, name, description, url, ctaLabel, wrapperClass
       rel="noopener noreferrer"
       className={`hidden xl:block absolute w-64 no-underline ${wrapperClassName}`}
     >
-      <div className="relative glass-card rounded-2xl p-5 overflow-hidden hover:border-[var(--accent)]">
+      <div className="relative glass-card rounded-2xl p-5 overflow-hidden">
         <span className={`absolute top-0 left-0 w-1 h-full ${accent}`} />
         <NumberBadge n={n} />
         <p className="text-lg font-extrabold heading-font text-[var(--text)] mt-3 mb-2">{name}</p>

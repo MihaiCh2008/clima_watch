@@ -1,5 +1,9 @@
+import { geocodeCity } from './geocode.js'
+
 export interface AirQualityResult {
   cityName: string
+  lat: number
+  lon: number
   aqi: number
   components: {
     pm2_5: number
@@ -13,12 +17,6 @@ export interface AirQualityResult {
 export type ApiOutcome =
   | { status: 200; body: AirQualityResult }
   | { status: 400 | 404 | 500; body: { error: string } }
-
-interface GeoEntry {
-  lat: number
-  lon: number
-  name: string
-}
 
 interface AirPollutionResponse {
   list: Array<{
@@ -41,15 +39,12 @@ export async function getAirQuality(city: string | null, apiKey: string | undefi
     return { status: 500, body: { error: 'Server misconfigured: missing WEATHER_API_KEY' } }
   }
 
-  const geoRes = await fetch(
-    `https://api.openweathermap.org/geo/1.0/direct?q=${encodeURIComponent(city)}&limit=1&appid=${apiKey}`
-  )
-  const geoData = (await geoRes.json()) as GeoEntry[]
-  if (!Array.isArray(geoData) || geoData.length === 0) {
+  const geo = await geocodeCity(city, apiKey)
+  if (!geo) {
     return { status: 404, body: { error: 'City not found' } }
   }
 
-  const { lat, lon, name } = geoData[0]
+  const { lat, lon, name } = geo
   const airRes = await fetch(
     `https://api.openweathermap.org/data/2.5/air_pollution?lat=${lat}&lon=${lon}&appid=${apiKey}`
   )
@@ -63,6 +58,8 @@ export async function getAirQuality(city: string | null, apiKey: string | undefi
     status: 200,
     body: {
       cityName: name,
+      lat,
+      lon,
       aqi: entry.main.aqi,
       components: entry.components,
     },

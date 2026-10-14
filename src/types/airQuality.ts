@@ -9,9 +9,31 @@ export interface AirQualityData {
   }
 }
 
-export interface HistoryPoint {
-  day: string
+export interface CityAir extends AirQualityData {
+  cityName: string
+  lat: number
+  lon: number
+}
+
+export interface HistoryDay {
+  date: string
   aqi: number
+  pm2_5: number
+}
+
+export interface ForecastHour {
+  dt: number
+  aqi: number
+  pm2_5: number
+}
+
+export interface GlobeCity {
+  name: string
+  query: string
+  lat: number
+  lon: number
+  aqi: number
+  pm2_5: number
 }
 
 export interface UserProfile {

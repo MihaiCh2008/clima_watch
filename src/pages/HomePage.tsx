@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { lazy, Suspense, useEffect, useRef, useState } from 'react'
 import { SearchBar } from '../components/SearchBar'
 import { LoadingSkeleton } from '../components/LoadingSkeleton'
 import { ErrorBanner } from '../components/ErrorBanner'
@@ -8,20 +8,37 @@ import { PollutantsGrid } from '../components/PollutantsGrid'
 import { HistoryChart } from '../components/HistoryChart'
 import { SideNote } from '../components/SideNote'
 import { GlobalClimateStrip } from '../components/GlobalClimateStrip'
+import { useAirMood } from '../context/airMood'
 import { useAirQuality } from '../hooks/useAirQuality'
 import { useProfile } from '../hooks/useProfile'
 import { useLanguage } from '../i18n/LanguageContext'
+import type { GlobeCity } from '../types/airQuality'
 import { getRecommendation } from '../utils/recommendations'
 import { requestNotificationPermission } from '../utils/notifications'
+
+const GlobeSection = lazy(() => import('../components/GlobeSection'))
 
 export function HomePage() {
   const { t } = useLanguage()
   const { profile } = useProfile()
-  const { city, setCity, data, history, cityName, loading, error, search } = useAirQuality(profile, t)
+  const { setMood } = useAirMood()
+  const { city, setCity, data, history, historyStatus, cityName, loading, error, search } = useAirQuality(profile, t)
+  const [globeQuery, setGlobeQuery] = useState<string | null>(null)
+  const searchRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     requestNotificationPermission()
   }, [])
+
+  useEffect(() => {
+    if (data) setMood({ aqi: data.aqi, pm2_5: data.components.pm2_5, city: cityName })
+  }, [data, cityName, setMood])
+
+  function handleGlobeSelect(selected: GlobeCity) {
+    setGlobeQuery(selected.query)
+    search(selected.query, selected.name)
+    searchRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+  }
 
   return (
     <div>
@@ -38,23 +55,29 @@ export function HomePage() {
 
         <GlobalClimateStrip />
 
-        <h2 className="text-sm font-bold label-mono text-[var(--text-muted)] uppercase tracking-wide mb-3">
-          {t.home.localSignalTitle}
-        </h2>
+        <Suspense fallback={<div className="mb-8 h-96 rounded-2xl skeleton-shimmer" />}>
+          <GlobeSection selectedQuery={globeQuery} onSelect={handleGlobeSelect} />
+        </Suspense>
 
-        <SearchBar city={city} onCityChange={setCity} onSearch={search} loading={loading} />
+        <div ref={searchRef} className="scroll-mt-4">
+          <h2 className="text-sm font-bold label-mono text-[var(--text-muted)] uppercase tracking-wide mb-3">
+            {t.home.localSignalTitle}
+          </h2>
 
-        {loading && <LoadingSkeleton />}
-        {error && !loading && <ErrorBanner message={error} />}
+          <SearchBar city={city} onCityChange={setCity} onSearch={() => search()} loading={loading} />
 
-        {data && !loading && (
-          <div className="space-y-8 animate-[fadeIn_0.4s_ease-in]">
-            <AqiCard aqi={data.aqi} cityName={cityName} />
-            <RecommendationBanner recommendation={getRecommendation(data.aqi, profile, t)} />
-            <PollutantsGrid components={data.components} />
-            <HistoryChart history={history} />
-          </div>
-        )}
+          {loading && <LoadingSkeleton />}
+          {error && !loading && <ErrorBanner message={error} />}
+
+          {data && !loading && (
+            <div className="space-y-8 animate-[fadeIn_0.4s_ease-in]">
+              <AqiCard aqi={data.aqi} cityName={cityName} />
+              <RecommendationBanner recommendation={getRecommendation(data.aqi, profile, t)} />
+              <PollutantsGrid components={data.components} />
+              <HistoryChart days={history} status={historyStatus} />
+            </div>
+          )}
+        </div>
       </div>
     </div>
   )

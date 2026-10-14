@@ -10,7 +10,7 @@ const LANGS: { code: Lang; label: string }[] = [
 export function LanguageSwitcher() {
   const { lang, setLang } = useLanguage()
   return (
-    <div className="flex gap-1 border border-[var(--border)] rounded-lg p-1 bg-[var(--bg-card)] shrink-0">
+    <div className="flex gap-1 rounded-lg p-1 bg-[var(--bg-card)] shrink-0">
       {LANGS.map((l) => (
         <button
           key={l.code}
