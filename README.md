@@ -38,6 +38,34 @@ ClimaWatch bridges the **global** and the **local**:
 
 Available in **English, Romanian, and Russian**.
 
+### Screenshots
+
+All screenshots are taken from the live app ([clima-watch.vercel.app](https://clima-watch.vercel.app)), with real data from the day they were captured.
+
+![Live world globe with cities colored by air quality](docs/screenshots/01-globe.jpg)
+
+*Live world globe — each dot is a city colored by its current air quality; hover for details, click to open its full report.*
+
+![Live result for a city: air quality card, recommendation, pollutants and a real 7-day history chart](docs/screenshots/02-live-check.jpg)
+
+*A city's live report — status, an action recommendation, five pollutants and a real 7-day PM2.5 history. The particles in the background are denser and murkier because the air is unhealthy.*
+
+![Two-city comparison with animated per-pollutant bars](docs/screenshots/03-compare.jpg)
+
+*City race — two cities head to head, pollutant by pollutant, with a verdict.*
+
+![Impact lab with sliders, a CO2 total, a breakdown bar and a forest of trees](docs/screenshots/04-impact-lab.jpg)
+
+*Impact lab — everyday choices turned into yearly CO2, compared with a typical lifestyle, and shown as the trees needed to offset it.*
+
+![Hour-by-hour air-quality planner adjusted to a profile](docs/screenshots/05-day-planner.jpg)
+
+*Your day, hour by hour — the real 24-hour forecast for a home city, colored for the user's profile, with the best time to be outside.*
+
+<img src="docs/screenshots/06-mobile.jpg" alt="The app on a phone" width="320">
+
+*The same app on a phone — the layout adapts, and the globe supports touch.*
+
 ---
 
 ## 2. People Involved
@@ -51,7 +79,7 @@ Team size: 1 student (solo entry), within the category's 1–2 student limit.
 
 ---
 
-## 3. Early-Stage Plan & Design Decisions
+## 3. Early-Stage Plan, Design Decisions & Timeline
 
 Before writing code, the project started from one framing question: *how do you make an abstract, global problem (climate change) feel personally relevant to one person, in one city, today?* That question shaped three early decisions that drove the rest of the design:
 
@@ -60,6 +88,19 @@ Before writing code, the project started from one framing question: *how do you 
 3. **Never expose the third-party API key in the browser** — since the app would call a paid-tier-capable weather API, the architecture was split into a frontend and a small backend proxy from the first design pass, specifically so the API key would never ship to the client (see [Architecture](#4-architecture) and [Problems Faced](#6-problems-faced--how-they-were-solved) below).
 
 From there the feature set grew iteratively: global context → city search and AQI display → profile-based recommendations → proactive browser alerts → historical emissions chart → multi-language support (RO/EN/RU) → a world globe, a data-driven particle background, real 7-day history and a two-city comparison.
+
+### Development timeline
+
+This timeline follows the project's Git history (every entry matches commits in the repository).
+
+| Date | What happened |
+|---|---|
+| **12 Sep 2026** | **First working version.** React + TypeScript frontend with a serverless backend that keeps the API key secret. Live air quality for any city, profile-based recommendations, browser alerts, global climate context, an interactive CO2 chart, and RO/EN/RU translations, with tests. Deployed to Vercel and linked from the README. |
+| **6 Oct 2026** | **Aligned with the Infomatrix rules.** Read the official regulations and the Software Development rubric. Rewrote the documentation in English with the required sections, added the MIT license and the Responsible AI disclosure, made English the default language, translated route names and code comments, fixed a hard-coded Romanian caption that showed in every language, and fixed a 404 on direct links to inner pages. |
+| **6 Oct 2026** | **Visual redesign, in several iterations.** From a dark neon look to a calmer light theme, then adjustments to text spacing, the accent color (green → blue) and the typography (several fonts tried before settling on Space Grotesk and Inter). |
+| **14 Oct 2026** | **New interactive features.** White, borderless interface; live world globe; particle background driven by air quality; real 7-day history replacing the mock chart; two-city comparison; impact lab; and the hour-by-hour planner. Three new backend endpoints with caching, and the test suite grew to 72 tests. README updated with screenshots. |
+
+Official competition dates (from [infomatrix.ro](https://www.infomatrix.ro), to be re-checked on the portal): submission deadline **15 March 2027**, finalists announced **20 March 2027**, World Finals in Bucharest **27–31 May 2027**.
 
 ---
 
