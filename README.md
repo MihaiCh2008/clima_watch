@@ -100,7 +100,7 @@ This timeline follows the project's Git history (every entry matches commits in 
 | **6 Oct 2026** | **Aligned with the Infomatrix rules.** Read the official regulations and the Software Development rubric. Rewrote the documentation in English with the required sections, added the MIT license and the Responsible AI disclosure, made English the default language, translated route names and code comments, fixed a hard-coded Romanian caption that showed in every language, and fixed a 404 on direct links to inner pages. |
 | **6 Oct 2026** | **Visual redesign, in several iterations.** From a dark neon look to a calmer light theme, then adjustments to text spacing, the accent color (green → blue) and the typography (several fonts tried before settling on Space Grotesk and Inter). |
 | **14 Oct 2026** | **New interactive features.** White, borderless interface; live world globe; particle background driven by air quality; real 7-day history replacing the mock chart; two-city comparison; impact lab; and the hour-by-hour planner. Three new backend endpoints with caching, and the test suite grew to 72 tests. README updated with screenshots. |
-| **5 Nov 2026** | **Research upgrade after the supervisor's evaluation.** Continuous EPA AQI for the history, city time zone in the planner, a pre-registered PM2.5 calibration benchmark (four methods, 576 test windows), a cost and health-economics model with a Research page, CDN cache changes, the MoldSEF abstract, visual annex and lab logbook. Tests grew from 72 to 145. |
+| **5 Nov 2026** | **Research upgrade after the supervisor's evaluation.** Continuous EPA AQI for the history, city time zone in the planner, a pre-registered PM2.5 calibration benchmark (four methods, 576 test windows), a cost and health-economics model with a Research page, CDN cache changes, the MoldSEF abstract, visual annex and lab logbook. Tests grew from 72 to 146. |
 
 Official competition dates (from [infomatrix.ro](https://www.infomatrix.ro), to be re-checked on the portal): submission deadline **15 March 2027**, finalists announced **20 March 2027**, World Finals in Bucharest **27–31 May 2027**.
 
@@ -147,7 +147,7 @@ Browser (React)                    Server (serverless functions)
 | Charts and animation | Hand-written SVG (smooth Bézier history chart) and canvas (particle field) — no charting library |
 | CO2 chart | [Our World in Data](https://ourworldindata.org/) (live embed) |
 | Video | [TED](https://www.ted.com/) — Katharine Hayhoe |
-| Testing | Vitest (145 tests) |
+| Testing | Vitest (146 tests) |
 | Hardware | None — ClimaWatch is a web application; it runs in any modern browser on any device with an internet connection (desktop, laptop, tablet, or phone). No dedicated hardware was built or required. |
 
 ### Project structure
@@ -304,7 +304,7 @@ WEATHER_API_KEY=your_openweathermap.org_key
 npm test
 ```
 
-145 tests cover the recommendation logic (every profile × air-quality combination); the four backend modules (`getAirQuality`, `getAirHistory`, `getAirForecast`, `getCitiesAir`: missing or invalid input, missing API key, city not found, partial upstream failures, valid responses, and that the API key never leaks into a response); and the pure logic behind the newer features (daily history aggregation, chart path generation, particle "mood" per air-quality level, the two-city verdict, the CO2 calculator, and the day planner's profile adjustment and best/worst window search), and the newer research work: the EPA AQI computation, city time-zone formatting, the ridge and gradient-boosted-tree implementations, the blocked cross-validation and bootstrap, the cost and health model (including a test that it uses the real cache lifetimes), and a check that the abstract quotes the real benchmark numbers.
+146 tests cover the recommendation logic (every profile × air-quality combination); the four backend modules (`getAirQuality`, `getAirHistory`, `getAirForecast`, `getCitiesAir`: missing or invalid input, missing API key, city not found, partial upstream failures, valid responses, and that the API key never leaks into a response); and the pure logic behind the newer features (daily history aggregation, chart path generation, particle "mood" per air-quality level, the two-city verdict, the CO2 calculator, and the day planner's profile adjustment and best/worst window search), and the newer research work: the EPA AQI computation, city time-zone formatting, the ridge and gradient-boosted-tree implementations, the blocked cross-validation and bootstrap, the cost and health model (including a test that it uses the real cache lifetimes), and a check that the abstract quotes the real benchmark numbers.
 
 ## Deployment
 

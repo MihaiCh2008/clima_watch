@@ -69,13 +69,13 @@ Trigger: the supervisor's evaluation of Submission #1 (score 68%, 7/10) asked fo
 Commands for the rows about running the tests and re-running the benchmark (run from the project root):
 
 ```bash
-npm test                    # 145 tests
+npm test                    # 146 tests
 npm run lint
 npm run build
-node research/benchmark.ts  # rewrites research/results/benchmark.json in about 20 s; RMSE values must match the abstract
+node research/benchmark.ts  # rewrites research/results/benchmark.json in about 20 s; every accuracy value must match the abstract exactly (only the timing fields and the timestamp change, by a few percent, from run to run)
 ```
 
-**Checks already run by the AI assistant on 2026-11-05** (these do *not* replace the student's own checks above): all 145 tests pass; `tsc -b` is clean; `npm run lint` reports one older warning in `LanguageContext.tsx`; `vite build` succeeds; `abstract.pdf` is 2 pages and `visual-annex.pdf` is 1 page, both set in Times New Roman; the numbers in `abstract.html` are asserted against `benchmark.json` by `research/docs.test.ts`; the Research page and the planner time zone were opened in a browser and showed no console errors.
+**Checks already run by the AI assistant on 2026-11-05** (these do *not* replace the student's own checks above): all 146 tests pass; `tsc -b` is clean; `npm run lint` reports one older warning in `LanguageContext.tsx`; `vite build` succeeds; `abstract.pdf` is 2 pages and `visual-annex.pdf` is 1 page, both set in Times New Roman; the numbers in `abstract.html` are asserted against `benchmark.json` by `research/docs.test.ts`; the Research page and the planner time zone were opened in a browser and showed no console errors.
 
 ## D. Planned experiments
 
