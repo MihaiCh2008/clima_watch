@@ -3,13 +3,14 @@ import { getAqiColor } from '../constants/aqi'
 import { useDayPlanner } from '../hooks/useDayPlanner'
 import { useLanguage } from '../i18n/LanguageContext'
 import type { ForecastHour, UserProfile } from '../types/airQuality'
+import { formatClock, isValidTimeZone, zoneLabel } from '../utils/time'
 import { adjustedLevel, bestWindow, isSensitive, upcomingHours, worstWindow, type HourWindow } from '../utils/planner'
 import { ErrorBanner } from './ErrorBanner'
 
 const COLUMNS = { gridTemplateColumns: 'repeat(24, minmax(0, 1fr))' }
 const HOUR_SECONDS = 3600
 
-function PlannerResults({ cityName, hours, profile }: { cityName: string; hours: ForecastHour[]; profile: UserProfile }) {
+function PlannerResults({ cityName, timezone, hours, profile }: { cityName: string; timezone: string | null; hours: ForecastHour[]; profile: UserProfile }) {
   const { t, lang } = useLanguage()
   const [selected, setSelected] = useState(0)
   const [grown, setGrown] = useState(false)
@@ -30,7 +31,9 @@ function PlannerResults({ cityName, hours, profile }: { cityName: string; hours:
   const worst =
     worstRaw && Math.max(...levels.slice(worstRaw.start, worstRaw.start + worstRaw.length)) >= 3 ? worstRaw : null
 
-  const time = (dt: number) => new Date(dt * 1000).toLocaleTimeString(lang, { hour: '2-digit', minute: '2-digit', hour12: false })
+  // Hours are labeled in the searched city's own time zone, not the viewer's.
+  const cityZone = isValidTimeZone(timezone) ? timezone : null
+  const time = (dt: number) => formatClock(dt, lang, cityZone)
   const range = (w: HourWindow) => `${time(upcoming[w.start].dt)}–${time(upcoming[w.start].dt + w.length * HOUR_SECONDS)}`
 
   const current = upcoming[selected]
@@ -43,7 +46,11 @@ function PlannerResults({ cityName, hours, profile }: { cityName: string; hours:
           <h3 className="label-mono text-sm font-bold uppercase tracking-wide text-[var(--text-muted)]">
             {t.planner.forCity.replace('{city}', cityName)}
           </h3>
-          <span className="text-xs text-[var(--text-soft)]">{t.planner.deviceTime}</span>
+          <span className="text-xs text-[var(--text-soft)]">
+            {cityZone
+              ? t.planner.cityTime.replace('{city}', cityName).replace('{zone}', `${cityZone.replace(/_/g, ' ')}, ${zoneLabel(upcoming[0].dt, lang, cityZone)}`)
+              : t.planner.deviceTime}
+          </span>
         </div>
 
         <div className="grid h-40 items-end gap-[3px]" style={COLUMNS}>
@@ -174,7 +181,7 @@ export function DayPlanner({ profile }: { profile: UserProfile }) {
           <ErrorBanner message={state.reason === 'notFound' ? t.planner.notFound : t.planner.error} />
         </div>
       )}
-      {state.status === 'ready' && <PlannerResults key={`${state.cityName}-${state.hours[0]?.dt}`} cityName={state.cityName} hours={state.hours} profile={profile} />}
+      {state.status === 'ready' && <PlannerResults key={`${state.cityName}-${state.hours[0]?.dt}`} cityName={state.cityName} timezone={state.timezone} hours={state.hours} profile={profile} />}
     </section>
   )
 }

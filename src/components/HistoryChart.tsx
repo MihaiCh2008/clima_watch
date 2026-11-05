@@ -116,7 +116,7 @@ export function HistoryChart({ days, status }: { days: HistoryDay[]; status: His
               <p className="font-bold">PM2.5 {activeDay.pm2_5} μg/m³</p>
               <p className="flex items-center gap-1.5">
                 <span className="inline-block h-2 w-2 rounded-full" style={{ background: getAqiColor(activeLevel).hex }} />
-                {t.aqi[activeLevel].text}
+                {t.aqi[activeLevel].text} · AQI {activeDay.aqiIndex}
               </p>
             </div>
           )}

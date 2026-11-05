@@ -1,0 +1,59 @@
+{
+  "city": "Chișinău",
+  "center": {
+    "lat": 47.0105,
+    "lon": 28.8638
+  },
+  "period": {
+    "start": "2026-01-01",
+    "end": "2026-10-31"
+  },
+  "minSensors": 2,
+  "sensors": [
+    {
+      "id": 87982,
+      "type": "SDS011",
+      "lat": 47.00553465784,
+      "lon": 28.84284067193,
+      "distanceKm": 1.68,
+      "daysWithData": 304,
+      "validHours": 7071
+    },
+    {
+      "id": 87984,
+      "type": "SDS011",
+      "lat": 47.02387052221,
+      "lon": 28.82907986674,
+      "distanceKm": 3.02,
+      "daysWithData": 224,
+      "validHours": 5248
+    },
+    {
+      "id": 71856,
+      "type": "SDS011",
+      "lat": 46.98,
+      "lon": 28.882,
+      "distanceKm": 3.66,
+      "daysWithData": 304,
+      "validHours": 7239
+    },
+    {
+      "id": 87976,
+      "type": "SDS011",
+      "lat": 46.99419466578,
+      "lon": 28.82076501879,
+      "distanceKm": 3.73,
+      "daysWithData": 256,
+      "validHours": 4567
+    },
+    {
+      "id": 42066,
+      "type": "SDS011",
+      "lat": 47.028,
+      "lon": 28.82,
+      "distanceKm": 3.85,
+      "daysWithData": 296,
+      "validHours": 6827
+    }
+  ]
+}

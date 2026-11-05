@@ -5,9 +5,9 @@ function jsonResponse(body: unknown) {
   return { json: async () => body } as Response
 }
 
-function hour(isoDate: string, hourOfDay: number, aqi: number, pm2_5: number) {
+function hour(isoDate: string, hourOfDay: number, aqi: number, pm2_5: number, extra: { pm10?: number; no2?: number; o3?: number } = {}) {
   const dt = Date.parse(`${isoDate}T${String(hourOfDay).padStart(2, '0')}:00:00Z`) / 1000
-  return { dt, main: { aqi }, components: { pm2_5 } }
+  return { dt, main: { aqi }, components: { pm2_5, ...extra } }
 }
 
 afterEach(() => {
@@ -15,21 +15,34 @@ afterEach(() => {
 })
 
 describe('aggregateDaily', () => {
-  it('averages hourly readings into one entry per UTC day, oldest first', () => {
-    const days = aggregateDaily([
-      hour('2026-03-02', 10, 3, 20),
-      hour('2026-03-01', 6, 1, 4),
-      hour('2026-03-01', 18, 2, 8),
-    ])
-    expect(days).toEqual([
-      { date: '2026-03-01', aqi: 2, pm2_5: 6 },
-      { date: '2026-03-02', aqi: 3, pm2_5: 20 },
-    ])
+  it('builds one entry per UTC day, oldest first, with the mean PM2.5', () => {
+    const days = aggregateDaily([hour('2026-03-02', 10, 3, 20), hour('2026-03-01', 6, 1, 4), hour('2026-03-01', 18, 2, 8)])
+    expect(days.map((d) => d.date)).toEqual(['2026-03-01', '2026-03-02'])
+    expect(days.map((d) => d.pm2_5)).toEqual([6, 20])
   })
 
-  it('keeps the rounded AQI inside the valid 1-5 range', () => {
-    const days = aggregateDaily([hour('2026-03-01', 1, 5, 90), hour('2026-03-01', 2, 5, 80)])
-    expect(days[0].aqi).toBe(5)
+  it('computes a continuous EPA index from concentrations instead of averaging the 1-5 integers', () => {
+    // Both hours report OpenWeatherMap category 2, but 12 vs 30 µg/m³ are far apart on the EPA scale.
+    const calm = aggregateDaily([hour('2026-03-01', 1, 2, 12), hour('2026-03-01', 2, 2, 12)])[0]
+    const busy = aggregateDaily([hour('2026-03-02', 1, 2, 30), hour('2026-03-02', 2, 2, 30)])[0]
+    expect(calm.aqiIndex).toBe(56)
+    expect(busy.aqiIndex).toBe(90)
+    expect(busy.aqiIndex).toBeGreaterThan(calm.aqiIndex)
+    expect(calm.aqi).toBe(2)
+    expect(busy.aqi).toBe(2)
+  })
+
+  it('maps the index to the 1-5 scale and reports the dominant pollutant', () => {
+    const day = aggregateDaily([hour('2026-03-01', 1, 5, 60, { pm10: 80, no2: 20, o3: 10 })])[0]
+    expect(day.aqiIndex).toBe(154)
+    expect(day.aqi).toBe(4)
+    expect(day.dominant).toBe('pm2_5')
+  })
+
+  it('lets another pollutant win when it is the worst one', () => {
+    const day = aggregateDaily([hour('2026-03-01', 1, 3, 5, { pm10: 300, no2: 10, o3: 10 })])[0]
+    expect(day.dominant).toBe('pm10')
+    expect(day.aqiIndex).toBeGreaterThan(150)
   })
 
   it('rounds PM2.5 averages to one decimal place', () => {

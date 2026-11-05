@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>ClimaWatch — MoldSEF abstract</title>
+<style>
+  @page { size: A4; margin: 2cm; }
+  html, body { margin: 0; padding: 0; }
+  body { font-family: "Times New Roman", Times, serif; font-size: 12pt; line-height: 1.15; color: #000; text-align: justify; }
+  h1, h2, p, table, ol { font-size: 12pt; margin: 0; }
+  h1 { text-align: center; font-weight: bold; margin-bottom: 2pt; }
+  h2 { font-weight: bold; margin-top: 6pt; }
+  .byline { text-align: center; margin-bottom: 3pt; }
+  p { margin-bottom: 3pt; }
+  table { border-collapse: collapse; width: 100%; margin: 3pt 0; text-align: center; }
+  th, td { border: 0.5pt solid #000; padding: 0 3pt; font-weight: normal; }
+  th { font-weight: bold; }
+  td.l, th.l { text-align: left; }
+  caption { caption-side: top; text-align: left; font-weight: bold; padding-bottom: 1pt; }
+  ol { padding-left: 1.6em; text-align: left; }
+  li { margin-bottom: 0; }
+</style>
+</head>
+<body>
+
+<h1>ClimaWatch: locally calibrating a global PM2.5 grid in Chișinău and București — a pre-registered benchmark and cost model</h1>
+<p class="byline">Mihai Chircu (Grade 12) · Supervisor: Azamat Jauysh · Software Development / Environmental data</p>
+
+<h2>1. Aim and hypothesis</h2>
+<p>Free global air-quality grids are easy to embed in applications but coarse: they miss local urban behaviour. We tested whether a small model that uses only information available at forecast time can correct the PM2.5 field of the OpenWeatherMap (OWM) air-pollution product toward what local sensors measure. Hypotheses were fixed before any model was run (repository file <i>research/PREREGISTRATION.md</i>). <b>H1:</b> gradient-boosted trees (GBT) reduce hourly PM2.5 RMSE by at least 22% against the raw grid over N ≥ 100 held-out 24-hour windows. <b>H2:</b> the same model reduces the miss rate of unhealthy-air alerts (daily mean ≥ 15 µg/m³, WHO 2021 guideline) by at least 18%. A hypothesis counts as supported only if the point estimate reaches the target and the 95% bootstrap interval excludes zero.</p>
+
+<h2>2. Methodology</h2>
+<p><b>Data</b> (1 Jan–31 Oct 2026). Ground truth: hourly median of the Sensor.Community low-cost particle sensors within 12 km of each centre (5 in Chișinău, 10 in București; plausibility filter; at least 2 and 3 sensors per hour). Baseline input: OWM hourly air-pollution history. Weather: ERA5 reanalysis. Twenty features (grid pollutants, temperature, humidity, wind, pressure, precipitation, boundary-layer height, hour, weekday); no sensor value is an input. <b>Models:</b> raw grid; scale + offset; ridge regression; GBT (250 trees, depth 4), implemented from scratch in TypeScript with hyper-parameters fixed in advance. <b>Validation:</b> blocked 6-fold cross-validation per city with 2-day gaps, so every one of the 576 city-days (13,791 hours) is tested exactly once; 2,000-resample day-block bootstrap for intervals. <b>Stated limits:</b> OWM keeps no forecast archive, so its value for the target hour stands in for the forecast (perfect-prognosis assumption): the experiment tests the calibration step, not forecast skill. The sensors are low-cost and read high in humid air, so a humidity &lt; 75% check was added.</p>
+
+<h2>3. Quantitative benchmark results</h2>
+<table>
+<caption>Table 1. Hourly PM2.5 error and alerts at ≥ 15 µg/m³ (576 windows, 49 unhealthy days)</caption>
+<tr><th class="l">Method</th><th>RMSE</th><th>Change</th><th>MAE</th><th>r</th><th>Missed alerts</th><th>F1</th></tr>
+<tr><td class="l">Raw OWM grid</td><td>6.28</td><td>—</td><td>3.97</td><td>0.49</td><td>31 (63%)</td><td>0.39</td></tr>
+<tr><td class="l">Scale + offset</td><td>5.52</td><td>−12.0%</td><td>3.76</td><td>0.49</td><td>36 (74%)</td><td>0.37</td></tr>
+<tr><td class="l">Ridge regression</td><td>5.00</td><td>−20.3%</td><td>3.24</td><td>0.61</td><td>33 (67%)</td><td>0.42</td></tr>
+<tr><td class="l">Gradient-boosted trees</td><td>4.99</td><td>−20.5%</td><td>3.15</td><td>0.65</td><td>23 (47%)</td><td>0.52</td></tr>
+</table>
+<p><b>H1 is partially supported:</b> GBT lowered RMSE by 20.5% (95% interval 14.5–26.4%), which is 1.5 points short of the 22% target, although the interval excludes zero. <b>H2 is not supported:</b> the miss rate fell by 25.8% (63% → 47%), above the 18% target, but with only 49 unhealthy days the interval is 0–48.6% and does not exclude zero. The gain held in the heating season (−24.2%) and on dry hours only (−27.2%), and differed by city (Chișinău −39%, București −11%). GBT did not beat the linear model (−20.5% vs −20.3%) and generalised worse to months it had not seen (−2.7% vs −16.2%); inference takes 10.7 µs per prediction for GBT (0.24 ms per 24-hour window) and 0.035 µs for ridge.</p>
+
+<h2>4. Economic and social applicability</h2>
+<p><b>Running cost</b> (model built from the deployed code). One visit causes about 30 OWM calls (26 for the world globe). For 10,000 users with 4 visits a month, an uncached service makes 1.2 million calls, above the free quota of 1 million; CDN caching reduces this to 239,000 (−80.1%; −92.6% at 100,000 users) and raises the free-tier capacity from 8,333 to 119,706 users a month. Hosting and API cost is therefore €0 a month and hardware €0 (any browser). Covering 100 sites with dedicated display monitors would cost €31,900 (IQAir AirVisual Pro, €319 list) or US$20,900–28,900 (PurpleAir Touch/Flex); these measure one spot directly, which ClimaWatch does not. <b>Health effect</b> (order of magnitude). With relative risks of 1.028–1.048 per 10 µg/m³ [1, 2], 14–35% behavioural reductions in outdoor activity on alert days [3, 4] and €215–€1,042 per emergency episode [5, 6], moving outdoor time to the cleanest hours avoids 0.001–0.63 emergency asthma episodes a year per 10,000 users (€0.2–€655; base case €6). The baseline episode rate is an assumption. Social value therefore lies in free, personalised hourly advice, not in large healthcare savings.</p>
+
+<h2>5. Conclusions</h2>
+<p>Local calibration of a free global grid reduces PM2.5 error by about one fifth in two cities, including in the heating season, but the pre-registered accuracy target was narrowly missed and the alert benefit remains unproven. A per-city ridge model is the best deployment candidate: as accurate as trees, more robust, and about 300 times cheaper. Next steps are logging live OWM forecasts to remove the perfect-prognosis assumption, adding reference-grade stations and more cities to obtain enough unhealthy days, and replacing the baseline episode rate with national statistics.</p>
+
+<h2>References</h2>
+<ol>
+<li>Lim H. et al. Short-term effect of fine particulate matter on children's hospital admissions and emergency department visits for asthma: a systematic review and meta-analysis. J Prev Med Public Health 2016;49:205–219.</li>
+<li>Fan J. et al. The impact of PM2.5 on asthma emergency department visits: a systematic review and meta-analysis. Environ Sci Pollut Res 2016;23:843–850.</li>
+<li>Saberian S., Heyes A., Rivers N. Alerts work! Air quality warnings and cycling. Resour Energy Econ 2017;49:165–185.</li>
+<li>Ward B., Beatty T. Who responds to air quality alerts? Environ Resour Econ 2016;65:487–511.</li>
+<li>Pugliese F.R. et al. Pharmacoeconomic management of patient with severe asthma in the Emergency Department: retrospective multicentric and cost of illness study. Eur Rev Med Pharmacol Sci 2020;24:11729–11739.</li>
+<li>Bavbek S., Mungan D., Türktaş H. A cost-of-illness study estimating the direct cost per asthma exacerbation in Turkey. Respir Med 2011;105:541–548.</li>
+</ol>
+<p><b>Availability.</b> Code, hourly datasets, pre-registration and logbook are in the project repository (folders <i>research/</i> and <i>docs/moldsef/</i>); every number above is produced by <i>research/benchmark.ts</i> and <i>src/utils/economics.ts</i>.</p>
+
+</body>
+</html>

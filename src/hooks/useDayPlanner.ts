@@ -8,7 +8,7 @@ export type PlannerState =
   | { status: 'idle' }
   | { status: 'loading' }
   | { status: 'error'; reason: 'notFound' | 'generic' }
-  | { status: 'ready'; cityName: string; hours: ForecastHour[] }
+  | { status: 'ready'; cityName: string; timezone: string | null; hours: ForecastHour[] }
 
 function loadCity(): string {
   try {
@@ -40,7 +40,7 @@ export function useDayPlanner() {
     if (requestId !== latestRequest.current) return
     setState(
       result.ok
-        ? { status: 'ready', cityName: result.data.cityName, hours: result.data.hours }
+        ? { status: 'ready', cityName: result.data.cityName, timezone: result.data.timezone ?? null, hours: result.data.hours }
         : { status: 'error', reason: result.reason }
     )
   }, [])

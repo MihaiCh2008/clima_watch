@@ -1,3 +1,4 @@
+import { lazy, Suspense } from 'react'
 import { Route, Routes } from 'react-router-dom'
 import { BreathingBackground } from './components/BreathingBackground'
 import { Navbar } from './components/Navbar'
@@ -8,6 +9,9 @@ import { HomePage } from './pages/HomePage'
 import { ProfilePage } from './pages/ProfilePage'
 import { ProblemPage } from './pages/ProblemPage'
 import { SolutionPage } from './pages/SolutionPage'
+
+// the research page ships the benchmark results, so it loads on demand
+const ResearchPage = lazy(() => import('./pages/ResearchPage').then((m) => ({ default: m.ResearchPage })))
 
 function AppShell() {
   return (
@@ -21,6 +25,14 @@ function AppShell() {
           <Route path="/solution" element={<SolutionPage />} />
           <Route path="/compare" element={<ComparePage />} />
           <Route path="/profile" element={<ProfilePage />} />
+          <Route
+            path="/research"
+            element={
+              <Suspense fallback={<div className="mx-auto h-96 max-w-3xl rounded-2xl skeleton-shimmer" />}>
+                <ResearchPage />
+              </Suspense>
+            }
+          />
         </Routes>
       </div>
     </div>

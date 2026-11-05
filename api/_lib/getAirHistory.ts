@@ -1,6 +1,13 @@
+import { aqiLevel, dailyIndex, type AqiPollutant } from './aqiIndex.js'
+
 export interface HistoryDay {
   date: string
+  /** 1-5 category derived from the continuous EPA index (kept for the chart colors). */
   aqi: number
+  /** Continuous US EPA AQI, 0-500, rebuilt from pollutant concentrations. */
+  aqiIndex: number
+  /** The pollutant that sets `aqiIndex` for that day. */
+  dominant: AqiPollutant
   pm2_5: number
 }
 
@@ -11,7 +18,7 @@ export type HistoryOutcome =
 interface HourlyEntry {
   dt: number
   main: { aqi: number }
-  components: { pm2_5: number }
+  components: { pm2_5: number; pm10?: number; no2?: number; o3?: number }
 }
 
 interface HistoryResponse {
@@ -20,26 +27,36 @@ interface HistoryResponse {
 
 const SECONDS_PER_DAY = 86_400
 
-/** Groups hourly readings by UTC calendar day and averages AQI and PM2.5 for each day. */
+/**
+ * Groups hourly readings by UTC calendar day and builds one entry per day:
+ * mean PM2.5, plus a continuous EPA AQI computed from the pollutant
+ * concentrations (not from averaging OpenWeatherMap's coarse 1-5 integers).
+ */
 export function aggregateDaily(list: HourlyEntry[]): HistoryDay[] {
-  const buckets = new Map<string, { aqiSum: number; pmSum: number; count: number }>()
+  const buckets = new Map<string, HourlyEntry[]>()
 
   for (const entry of list) {
     const date = new Date(entry.dt * 1000).toISOString().slice(0, 10)
-    const bucket = buckets.get(date) ?? { aqiSum: 0, pmSum: 0, count: 0 }
-    bucket.aqiSum += entry.main.aqi
-    bucket.pmSum += entry.components.pm2_5
-    bucket.count += 1
+    const bucket = buckets.get(date) ?? []
+    bucket.push(entry)
     buckets.set(date, bucket)
   }
 
   return [...buckets.entries()]
     .sort(([a], [b]) => a.localeCompare(b))
-    .map(([date, b]) => ({
-      date,
-      aqi: Math.min(5, Math.max(1, Math.round(b.aqiSum / b.count))),
-      pm2_5: Math.round((b.pmSum / b.count) * 10) / 10,
-    }))
+    .map(([date, entries]) => {
+      const pmSum = entries.reduce((sum, e) => sum + e.components.pm2_5, 0)
+      const index = dailyIndex(entries.map((e) => ({ dt: e.dt, ...e.components })))
+      // dailyIndex only returns null when no pollutant is present; PM2.5 always is
+      const aqiIndex = index?.index ?? 0
+      return {
+        date,
+        aqi: aqiLevel(aqiIndex),
+        aqiIndex,
+        dominant: index?.dominant ?? 'pm2_5',
+        pm2_5: Math.round((pmSum / entries.length) * 10) / 10,
+      }
+    })
 }
 
 function parseCoordinate(raw: string | null, limit: number): number | null {

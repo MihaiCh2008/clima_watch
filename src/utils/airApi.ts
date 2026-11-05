@@ -1,11 +1,19 @@
 import type { CityAir, ForecastHour, GlobeCity, HistoryDay } from '../types/airQuality'
 
+/**
+ * Canonical form of a typed city, so "Chisinau", " chisinau" and "CHISINAU" all request the same URL
+ * and share one CDN cache entry (the geocoder ignores case, so the answer is identical).
+ */
+export function normalizeCityQuery(city: string): string {
+  return city.trim().replace(/\s+/g, ' ').toLowerCase()
+}
+
 export type AirQualityResult = { ok: true; data: CityAir } | { ok: false; reason: 'notFound' | 'generic' }
 
 /** Calls our own backend (never OpenWeatherMap directly) — the API key stays on the server. */
 export async function fetchAirQuality(city: string): Promise<AirQualityResult> {
   try {
-    const res = await fetch(`/api/air-quality?city=${encodeURIComponent(city)}`)
+    const res = await fetch(`/api/air-quality?city=${encodeURIComponent(normalizeCityQuery(city))}`)
     if (res.status === 404) return { ok: false, reason: 'notFound' }
     if (!res.ok) return { ok: false, reason: 'generic' }
     return { ok: true, data: (await res.json()) as CityAir }
@@ -27,16 +35,16 @@ export async function fetchAirHistory(lat: number, lon: number): Promise<History
 }
 
 export type ForecastResult =
-  | { ok: true; data: { cityName: string; hours: ForecastHour[] } }
+  | { ok: true; data: { cityName: string; timezone: string | null; hours: ForecastHour[] } }
   | { ok: false; reason: 'notFound' | 'generic' }
 
 /** Hourly forecast for a city (the next ~48 hours). */
 export async function fetchAirForecast(city: string): Promise<ForecastResult> {
   try {
-    const res = await fetch(`/api/air-forecast?city=${encodeURIComponent(city)}`)
+    const res = await fetch(`/api/air-forecast?city=${encodeURIComponent(normalizeCityQuery(city))}`)
     if (res.status === 404) return { ok: false, reason: 'notFound' }
     if (!res.ok) return { ok: false, reason: 'generic' }
-    return { ok: true, data: (await res.json()) as { cityName: string; hours: ForecastHour[] } }
+    return { ok: true, data: (await res.json()) as { cityName: string; timezone: string | null; hours: ForecastHour[] } }
   } catch {
     return { ok: false, reason: 'generic' }
   }

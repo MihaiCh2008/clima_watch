@@ -12,6 +12,7 @@ export interface Translation {
     solution: string
     live: string
     compare: string
+    research: string
     profile: string
   }
   home: {
@@ -96,6 +97,7 @@ export interface Translation {
     exerciseNote: string
     now: string
     deviceTime: string
+    cityTime: string
     hint: string
   }
   compare: {
@@ -203,6 +205,7 @@ export const translations: Record<Lang, Translation> = {
       solution: 'Soluția',
       live: 'Verifică live',
       compare: 'Compară',
+      research: 'Cercetare',
       profile: 'Profilul meu',
     },
     home: {
@@ -288,6 +291,7 @@ export const translations: Record<Lang, Translation> = {
       exerciseNote: 'Faci sport afară, așa că căutăm cea mai curată fereastră de 2 ore.',
       now: 'Acum',
       deviceTime: 'Orele sunt în fusul orar al dispozitivului tău.',
+      cityTime: 'Orele sunt în ora locală din {city} ({zone}).',
       hint: 'Treci cu mouse-ul sau atinge o oră pentru detalii.',
     },
     compare: {
@@ -421,6 +425,7 @@ export const translations: Record<Lang, Translation> = {
       solution: 'Solution',
       live: 'Live check',
       compare: 'Compare',
+      research: 'Research',
       profile: 'My profile',
     },
     home: {
@@ -506,6 +511,7 @@ export const translations: Record<Lang, Translation> = {
       exerciseNote: 'You exercise outdoors, so we look for the cleanest 2-hour window.',
       now: 'Now',
       deviceTime: 'Times are in your device time zone.',
+      cityTime: 'Times are in {city} local time ({zone}).',
       hint: 'Hover or tap an hour for details.',
     },
     compare: {
@@ -639,6 +645,7 @@ export const translations: Record<Lang, Translation> = {
       solution: 'Решение',
       live: 'Проверить сейчас',
       compare: 'Сравнить',
+      research: 'Исследование',
       profile: 'Мой профиль',
     },
     home: {
@@ -724,6 +731,7 @@ export const translations: Record<Lang, Translation> = {
       exerciseNote: 'Вы занимаетесь спортом на улице, поэтому мы ищем самое чистое двухчасовое окно.',
       now: 'Сейчас',
       deviceTime: 'Время указано в часовом поясе вашего устройства.',
+      cityTime: 'Время указано по местному времени города {city} ({zone}).',
       hint: 'Наведите курсор или коснитесь часа, чтобы увидеть детали.',
     },
     compare: {

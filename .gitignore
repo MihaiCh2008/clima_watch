@@ -26,3 +26,5 @@ dist-ssr
 
 # unelte locale de dezvoltare
 .claude/
+# raw downloads for the research pipeline (the aggregated hourly datasets in research/data/*.csv are committed)
+research/data/raw/

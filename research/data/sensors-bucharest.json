@@ -1,0 +1,104 @@
+{
+  "city": "București",
+  "center": {
+    "lat": 44.4268,
+    "lon": 26.1025
+  },
+  "period": {
+    "start": "2026-01-01",
+    "end": "2026-10-31"
+  },
+  "minSensors": 3,
+  "sensors": [
+    {
+      "id": 56776,
+      "type": "SDS011",
+      "lat": 44.41345388987,
+      "lon": 26.10006952305,
+      "distanceKm": 1.5,
+      "daysWithData": 272,
+      "validHours": 6455
+    },
+    {
+      "id": 89277,
+      "type": "SPS30",
+      "lat": 44.43697656417,
+      "lon": 26.08395159245,
+      "distanceKm": 1.86,
+      "daysWithData": 303,
+      "validHours": 6474
+    },
+    {
+      "id": 39082,
+      "type": "SDS011",
+      "lat": 44.444,
+      "lon": 26.098,
+      "distanceKm": 1.95,
+      "daysWithData": 246,
+      "validHours": 5695
+    },
+    {
+      "id": 87013,
+      "type": "SDS011",
+      "lat": 44.426,
+      "lon": 26.07,
+      "distanceKm": 2.58,
+      "daysWithData": 304,
+      "validHours": 6858
+    },
+    {
+      "id": 87657,
+      "type": "SDS011",
+      "lat": 44.42347561414,
+      "lon": 26.14607691765,
+      "distanceKm": 3.48,
+      "daysWithData": 304,
+      "validHours": 7296
+    },
+    {
+      "id": 43469,
+      "type": "PMS5003",
+      "lat": 44.38290342159,
+      "lon": 26.13673478365,
+      "distanceKm": 5.59,
+      "daysWithData": 176,
+      "validHours": 4008
+    },
+    {
+      "id": 88307,
+      "type": "SDS011",
+      "lat": 44.46907926395,
+      "lon": 26.05752110481,
+      "distanceKm": 5.9,
+      "daysWithData": 304,
+      "validHours": 7277
+    },
+    {
+      "id": 94282,
+      "type": "SPS30",
+      "lat": 44.41249793129,
+      "lon": 26.19358420372,
+      "distanceKm": 7.41,
+      "daysWithData": 303,
+      "validHours": 7254
+    },
+    {
+      "id": 88521,
+      "type": "SPS30",
+      "lat": 44.46267442606,
+      "lon": 26.19680285454,
+      "distanceKm": 8.48,
+      "daysWithData": 270,
+      "validHours": 5281
+    },
+    {
+      "id": 85261,
+      "type": "SDS011",
+      "lat": 44.48482444921,
+      "lon": 26.02662205729,
+      "distanceKm": 8.83,
+      "daysWithData": 211,
+      "validHours": 4875
+    }
+  ]
+}

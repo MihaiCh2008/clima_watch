@@ -18,6 +18,9 @@ export interface CityAir extends AirQualityData {
 export interface HistoryDay {
   date: string
   aqi: number
+  /** Continuous US EPA AQI (0-500), computed from pollutant concentrations. */
+  aqiIndex: number
+  dominant: 'pm2_5' | 'pm10' | 'no2' | 'o3'
   pm2_5: number
 }
 

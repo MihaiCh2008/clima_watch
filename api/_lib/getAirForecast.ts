@@ -1,4 +1,5 @@
 import { geocodeCity } from './geocode.js'
+import { lookupTimezone } from './timezone.js'
 
 export interface ForecastHour {
   dt: number
@@ -7,7 +8,7 @@ export interface ForecastHour {
 }
 
 export type ForecastOutcome =
-  | { status: 200; body: { cityName: string; hours: ForecastHour[] } }
+  | { status: 200; body: { cityName: string; timezone: string | null; hours: ForecastHour[] } }
   | { status: 400 | 404 | 500; body: { error: string } }
 
 interface ForecastResponse {
@@ -31,9 +32,11 @@ export async function getAirForecast(city: string | null, apiKey: string | undef
     return { status: 404, body: { error: 'City not found' } }
   }
 
-  const res = await fetch(
-    `https://api.openweathermap.org/data/2.5/air_pollution/forecast?lat=${geo.lat}&lon=${geo.lon}&appid=${apiKey}`
-  )
+  // The city's own time zone, so hours can be labeled in local time rather than the viewer's.
+  const [res, timezone] = await Promise.all([
+    fetch(`https://api.openweathermap.org/data/2.5/air_pollution/forecast?lat=${geo.lat}&lon=${geo.lon}&appid=${apiKey}`),
+    lookupTimezone(geo.lat, geo.lon),
+  ])
   const data = (await res.json()) as ForecastResponse
   if (!Array.isArray(data?.list) || data.list.length === 0) {
     return { status: 500, body: { error: 'Upstream air pollution forecast unavailable' } }
@@ -44,5 +47,5 @@ export async function getAirForecast(city: string | null, apiKey: string | undef
     aqi: entry.main.aqi,
     pm2_5: entry.components.pm2_5,
   }))
-  return { status: 200, body: { cityName: geo.name, hours } }
+  return { status: 200, body: { cityName: geo.name, timezone, hours } }
 }

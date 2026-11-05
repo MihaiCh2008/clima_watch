@@ -10,6 +10,7 @@ export function Navbar() {
     { to: '/solution', label: t.nav.solution, end: false },
     { to: '/', label: t.nav.live, end: true },
     { to: '/compare', label: t.nav.compare, end: false },
+    { to: '/research', label: t.nav.research, end: false },
     { to: '/profile', label: t.nav.profile, end: false },
   ]
 

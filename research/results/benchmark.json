@@ -1,0 +1,1569 @@
+{
+  "data": [
+    {
+      "city": "Chișinău",
+      "hours": 6912,
+      "hoursWithTruth": 6894,
+      "windows": 288,
+      "firstDay": "2026-01-01",
+      "lastDay": "2026-10-31",
+      "meanObsPm25": 5.35,
+      "meanOwmPm25": 6,
+      "daysAbove15": 7,
+      "daysAbove35_5": 0
+    },
+    {
+      "city": "București",
+      "hours": 6912,
+      "hoursWithTruth": 6897,
+      "windows": 288,
+      "firstDay": "2026-01-01",
+      "lastDay": "2026-10-31",
+      "meanObsPm25": 8.44,
+      "meanOwmPm25": 6.07,
+      "daysAbove15": 42,
+      "daysAbove35_5": 3
+    }
+  ],
+  "primary": {
+    "scheme": "blocked 6-fold CV per city, 2-day gap",
+    "pooled": {
+      "windows": 576,
+      "hours": 13791,
+      "hourly": {
+        "raw": {
+          "rmse": 6.276,
+          "mae": 3.974,
+          "bias": -0.86,
+          "r": 0.485
+        },
+        "scaled": {
+          "rmse": 5.524,
+          "mae": 3.756,
+          "bias": -0.023,
+          "r": 0.485
+        },
+        "ridge": {
+          "rmse": 5.004,
+          "mae": 3.238,
+          "bias": -0.349,
+          "r": 0.612
+        },
+        "gbt": {
+          "rmse": 4.992,
+          "mae": 3.148,
+          "bias": 0.359,
+          "r": 0.647
+        }
+      },
+      "improvementAt15": {
+        "scaled": {
+          "rmse": {
+            "estimate": 0.12,
+            "low": 0.071,
+            "high": 0.172
+          },
+          "missRate": {
+            "estimate": -0.161,
+            "low": -0.381,
+            "high": 0
+          }
+        },
+        "ridge": {
+          "rmse": {
+            "estimate": 0.203,
+            "low": 0.15,
+            "high": 0.261
+          },
+          "missRate": {
+            "estimate": -0.065,
+            "low": -0.313,
+            "high": 0.125
+          }
+        },
+        "gbt": {
+          "rmse": {
+            "estimate": 0.205,
+            "low": 0.145,
+            "high": 0.264
+          },
+          "missRate": {
+            "estimate": 0.258,
+            "low": 0,
+            "high": 0.486
+          }
+        }
+      },
+      "daily15": {
+        "windows": 576,
+        "observedAlertDays": 49,
+        "models": {
+          "raw": {
+            "dailyRmse": 5.132,
+            "dailyMae": 3.291,
+            "confusion": {
+              "tp": 18,
+              "fp": 25,
+              "fn": 31,
+              "tn": 502
+            },
+            "precision": 0.419,
+            "recall": 0.367,
+            "f1": 0.391,
+            "missRate": 0.633
+          },
+          "scaled": {
+            "dailyRmse": 4.471,
+            "dailyMae": 3.136,
+            "confusion": {
+              "tp": 13,
+              "fp": 9,
+              "fn": 36,
+              "tn": 518
+            },
+            "precision": 0.591,
+            "recall": 0.265,
+            "f1": 0.366,
+            "missRate": 0.735
+          },
+          "ridge": {
+            "dailyRmse": 4.001,
+            "dailyMae": 2.607,
+            "confusion": {
+              "tp": 16,
+              "fp": 11,
+              "fn": 33,
+              "tn": 516
+            },
+            "precision": 0.593,
+            "recall": 0.327,
+            "f1": 0.421,
+            "missRate": 0.673
+          },
+          "gbt": {
+            "dailyRmse": 3.871,
+            "dailyMae": 2.499,
+            "confusion": {
+              "tp": 26,
+              "fp": 25,
+              "fn": 23,
+              "tn": 502
+            },
+            "precision": 0.51,
+            "recall": 0.531,
+            "f1": 0.52,
+            "missRate": 0.469
+          }
+        }
+      },
+      "daily35_5": {
+        "windows": 576,
+        "observedAlertDays": 3,
+        "models": {
+          "raw": {
+            "dailyRmse": 5.132,
+            "dailyMae": 3.291,
+            "confusion": {
+              "tp": 0,
+              "fp": 1,
+              "fn": 3,
+              "tn": 572
+            },
+            "precision": 0,
+            "recall": 0,
+            "f1": 0,
+            "missRate": 1
+          },
+          "scaled": {
+            "dailyRmse": 4.471,
+            "dailyMae": 3.136,
+            "confusion": {
+              "tp": 0,
+              "fp": 0,
+              "fn": 3,
+              "tn": 573
+            },
+            "precision": 0,
+            "recall": 0,
+            "f1": 0,
+            "missRate": 1
+          },
+          "ridge": {
+            "dailyRmse": 4.001,
+            "dailyMae": 2.607,
+            "confusion": {
+              "tp": 0,
+              "fp": 0,
+              "fn": 3,
+              "tn": 573
+            },
+            "precision": 0,
+            "recall": 0,
+            "f1": 0,
+            "missRate": 1
+          },
+          "gbt": {
+            "dailyRmse": 3.871,
+            "dailyMae": 2.499,
+            "confusion": {
+              "tp": 0,
+              "fp": 0,
+              "fn": 3,
+              "tn": 573
+            },
+            "precision": 0,
+            "recall": 0,
+            "f1": 0,
+            "missRate": 1
+          }
+        }
+      },
+      "improvementAt35_5": {
+        "scaled": {
+          "rmse": {
+            "estimate": 0.12,
+            "low": 0.071,
+            "high": 0.172
+          },
+          "missRate": {
+            "estimate": 0,
+            "low": 0,
+            "high": 0
+          }
+        },
+        "ridge": {
+          "rmse": {
+            "estimate": 0.203,
+            "low": 0.15,
+            "high": 0.261
+          },
+          "missRate": {
+            "estimate": 0,
+            "low": 0,
+            "high": 0
+          }
+        },
+        "gbt": {
+          "rmse": {
+            "estimate": 0.205,
+            "low": 0.145,
+            "high": 0.264
+          },
+          "missRate": {
+            "estimate": 0,
+            "low": 0,
+            "high": 0
+          }
+        }
+      }
+    },
+    "perCity": {
+      "Chișinău": {
+        "windows": 288,
+        "hours": 6894,
+        "hourly": {
+          "raw": {
+            "rmse": 5.514,
+            "mae": 3.383,
+            "bias": 0.649,
+            "r": 0.536
+          },
+          "scaled": {
+            "rmse": 3.705,
+            "mae": 2.725,
+            "bias": 0.02,
+            "r": 0.454
+          },
+          "ridge": {
+            "rmse": 3.123,
+            "mae": 2.191,
+            "bias": -0.086,
+            "r": 0.656
+          },
+          "gbt": {
+            "rmse": 3.36,
+            "mae": 2.312,
+            "bias": 0.255,
+            "r": 0.628
+          }
+        },
+        "improvementAt15": {
+          "scaled": {
+            "rmse": {
+              "estimate": 0.328,
+              "low": 0.239,
+              "high": 0.399
+            },
+            "missRate": {
+              "estimate": -1,
+              "low": -5,
+              "high": 0
+            }
+          },
+          "ridge": {
+            "rmse": {
+              "estimate": 0.434,
+              "low": 0.355,
+              "high": 0.496
+            },
+            "missRate": {
+              "estimate": -1.333,
+              "low": -6,
+              "high": 0
+            }
+          },
+          "gbt": {
+            "rmse": {
+              "estimate": 0.391,
+              "low": 0.302,
+              "high": 0.459
+            },
+            "missRate": {
+              "estimate": -1,
+              "low": -5,
+              "high": 0
+            }
+          }
+        },
+        "daily15": {
+          "windows": 288,
+          "observedAlertDays": 7,
+          "models": {
+            "raw": {
+              "dailyRmse": 4.613,
+              "dailyMae": 2.805,
+              "confusion": {
+                "tp": 4,
+                "fp": 17,
+                "fn": 3,
+                "tn": 264
+              },
+              "precision": 0.19,
+              "recall": 0.571,
+              "f1": 0.286,
+              "missRate": 0.429
+            },
+            "scaled": {
+              "dailyRmse": 2.857,
+              "dailyMae": 2.268,
+              "confusion": {
+                "tp": 1,
+                "fp": 1,
+                "fn": 6,
+                "tn": 280
+              },
+              "precision": 0.5,
+              "recall": 0.143,
+              "f1": 0.222,
+              "missRate": 0.857
+            },
+            "ridge": {
+              "dailyRmse": 2.247,
+              "dailyMae": 1.644,
+              "confusion": {
+                "tp": 0,
+                "fp": 0,
+                "fn": 7,
+                "tn": 281
+              },
+              "precision": 0,
+              "recall": 0,
+              "f1": 0,
+              "missRate": 1
+            },
+            "gbt": {
+              "dailyRmse": 2.495,
+              "dailyMae": 1.793,
+              "confusion": {
+                "tp": 1,
+                "fp": 2,
+                "fn": 6,
+                "tn": 279
+              },
+              "precision": 0.333,
+              "recall": 0.143,
+              "f1": 0.2,
+              "missRate": 0.857
+            }
+          }
+        }
+      },
+      "București": {
+        "windows": 288,
+        "hours": 6897,
+        "hourly": {
+          "raw": {
+            "rmse": 6.955,
+            "mae": 4.565,
+            "bias": -2.368,
+            "r": 0.536
+          },
+          "scaled": {
+            "rmse": 6.878,
+            "mae": 4.787,
+            "bias": -0.066,
+            "r": 0.427
+          },
+          "ridge": {
+            "rmse": 6.35,
+            "mae": 4.285,
+            "bias": -0.612,
+            "r": 0.557
+          },
+          "gbt": {
+            "rmse": 6.208,
+            "mae": 3.983,
+            "bias": 0.463,
+            "r": 0.618
+          }
+        },
+        "improvementAt15": {
+          "scaled": {
+            "rmse": {
+              "estimate": 0.011,
+              "low": -0.016,
+              "high": 0.042
+            },
+            "missRate": {
+              "estimate": -0.071,
+              "low": -0.25,
+              "high": 0.067
+            }
+          },
+          "ridge": {
+            "rmse": {
+              "estimate": 0.087,
+              "low": 0.043,
+              "high": 0.133
+            },
+            "missRate": {
+              "estimate": 0.071,
+              "low": -0.1,
+              "high": 0.233
+            }
+          },
+          "gbt": {
+            "rmse": {
+              "estimate": 0.107,
+              "low": 0.042,
+              "high": 0.166
+            },
+            "missRate": {
+              "estimate": 0.393,
+              "low": 0.167,
+              "high": 0.607
+            }
+          }
+        },
+        "daily15": {
+          "windows": 288,
+          "observedAlertDays": 42,
+          "models": {
+            "raw": {
+              "dailyRmse": 5.603,
+              "dailyMae": 3.777,
+              "confusion": {
+                "tp": 14,
+                "fp": 8,
+                "fn": 28,
+                "tn": 238
+              },
+              "precision": 0.636,
+              "recall": 0.333,
+              "f1": 0.437,
+              "missRate": 0.667
+            },
+            "scaled": {
+              "dailyRmse": 5.641,
+              "dailyMae": 4.004,
+              "confusion": {
+                "tp": 12,
+                "fp": 8,
+                "fn": 30,
+                "tn": 238
+              },
+              "precision": 0.6,
+              "recall": 0.286,
+              "f1": 0.387,
+              "missRate": 0.714
+            },
+            "ridge": {
+              "dailyRmse": 5.193,
+              "dailyMae": 3.57,
+              "confusion": {
+                "tp": 16,
+                "fp": 11,
+                "fn": 26,
+                "tn": 235
+              },
+              "precision": 0.593,
+              "recall": 0.381,
+              "f1": 0.464,
+              "missRate": 0.619
+            },
+            "gbt": {
+              "dailyRmse": 4.873,
+              "dailyMae": 3.204,
+              "confusion": {
+                "tp": 25,
+                "fp": 23,
+                "fn": 17,
+                "tn": 223
+              },
+              "precision": 0.521,
+              "recall": 0.595,
+              "f1": 0.556,
+              "missRate": 0.405
+            }
+          }
+        }
+      }
+    }
+  },
+  "dryHoursOnly": {
+    "windows": 490,
+    "hours": 7445,
+    "hourly": {
+      "raw": {
+        "rmse": 4.478,
+        "mae": 2.732,
+        "bias": 0.372,
+        "r": 0.394
+      },
+      "scaled": {
+        "rmse": 3.845,
+        "mae": 3.031,
+        "bias": 1.888,
+        "r": 0.418
+      },
+      "ridge": {
+        "rmse": 3.288,
+        "mae": 2.315,
+        "bias": 0.184,
+        "r": 0.493
+      },
+      "gbt": {
+        "rmse": 3.262,
+        "mae": 2.028,
+        "bias": 0.297,
+        "r": 0.53
+      }
+    },
+    "improvementAt15": {
+      "scaled": {
+        "rmse": {
+          "estimate": 0.141,
+          "low": 0.041,
+          "high": 0.225
+        },
+        "missRate": {
+          "estimate": -0.222,
+          "low": -0.833,
+          "high": 0
+        }
+      },
+      "ridge": {
+        "rmse": {
+          "estimate": 0.266,
+          "low": 0.169,
+          "high": 0.347
+        },
+        "missRate": {
+          "estimate": -0.444,
+          "low": -1.4,
+          "high": -0.071
+        }
+      },
+      "gbt": {
+        "rmse": {
+          "estimate": 0.272,
+          "low": 0.154,
+          "high": 0.371
+        },
+        "missRate": {
+          "estimate": -0.333,
+          "low": -1.5,
+          "high": 0.2
+        }
+      }
+    },
+    "shareOfHours": 0.54,
+    "rhBelow": 75
+  },
+  "forwardChaining": {
+    "trainBefore": "2026-07-01",
+    "windows": 232,
+    "hours": 5554,
+    "hourly": {
+      "raw": {
+        "rmse": 4.705,
+        "mae": 3.016,
+        "bias": 0.795,
+        "r": 0.494
+      },
+      "scaled": {
+        "rmse": 4.438,
+        "mae": 3.593,
+        "bias": 2.873,
+        "r": 0.542
+      },
+      "ridge": {
+        "rmse": 3.941,
+        "mae": 2.986,
+        "bias": 1.383,
+        "r": 0.574
+      },
+      "gbt": {
+        "rmse": 4.579,
+        "mae": 3.011,
+        "bias": 1.597,
+        "r": 0.564
+      }
+    },
+    "improvementAt15": {
+      "scaled": {
+        "rmse": {
+          "estimate": 0.057,
+          "low": -0.113,
+          "high": 0.181
+        },
+        "missRate": {
+          "estimate": 1,
+          "low": 0,
+          "high": 1
+        }
+      },
+      "ridge": {
+        "rmse": {
+          "estimate": 0.162,
+          "low": 0.003,
+          "high": 0.287
+        },
+        "missRate": {
+          "estimate": 1,
+          "low": 0,
+          "high": 1
+        }
+      },
+      "gbt": {
+        "rmse": {
+          "estimate": 0.027,
+          "low": -0.164,
+          "high": 0.176
+        },
+        "missRate": {
+          "estimate": 1,
+          "low": 0,
+          "high": 1
+        }
+      }
+    },
+    "daily15": {
+      "windows": 232,
+      "observedAlertDays": 2,
+      "models": {
+        "raw": {
+          "dailyRmse": 3.994,
+          "dailyMae": 2.426,
+          "confusion": {
+            "tp": 1,
+            "fp": 13,
+            "fn": 1,
+            "tn": 217
+          },
+          "precision": 0.071,
+          "recall": 0.5,
+          "f1": 0.125,
+          "missRate": 0.5
+        },
+        "scaled": {
+          "dailyRmse": 3.915,
+          "dailyMae": 3.23,
+          "confusion": {
+            "tp": 2,
+            "fp": 9,
+            "fn": 0,
+            "tn": 221
+          },
+          "precision": 0.182,
+          "recall": 1,
+          "f1": 0.308,
+          "missRate": 0
+        },
+        "ridge": {
+          "dailyRmse": 3.323,
+          "dailyMae": 2.515,
+          "confusion": {
+            "tp": 2,
+            "fp": 10,
+            "fn": 0,
+            "tn": 220
+          },
+          "precision": 0.167,
+          "recall": 1,
+          "f1": 0.286,
+          "missRate": 0
+        },
+        "gbt": {
+          "dailyRmse": 3.931,
+          "dailyMae": 2.589,
+          "confusion": {
+            "tp": 2,
+            "fp": 17,
+            "fn": 0,
+            "tn": 213
+          },
+          "precision": 0.105,
+          "recall": 1,
+          "f1": 0.19,
+          "missRate": 0
+        }
+      }
+    }
+  },
+  "transfer": [
+    {
+      "trainedOn": "București",
+      "testedOn": "Chișinău",
+      "windows": 288,
+      "hours": 6894,
+      "hourly": {
+        "raw": {
+          "rmse": 5.514,
+          "mae": 3.383,
+          "bias": 0.649,
+          "r": 0.536
+        },
+        "scaled": {
+          "rmse": 5.327,
+          "mae": 4.039,
+          "bias": 3.034,
+          "r": 0.536
+        },
+        "ridge": {
+          "rmse": 4.702,
+          "mae": 3.546,
+          "bias": 2.577,
+          "r": 0.68
+        },
+        "gbt": {
+          "rmse": 5.576,
+          "mae": 3.52,
+          "bias": 2.455,
+          "r": 0.656
+        }
+      },
+      "improvementAt15": {
+        "scaled": {
+          "rmse": {
+            "estimate": 0.034,
+            "low": -0.015,
+            "high": 0.07
+          },
+          "missRate": {
+            "estimate": 0.333,
+            "low": 0,
+            "high": 1
+          }
+        },
+        "ridge": {
+          "rmse": {
+            "estimate": 0.147,
+            "low": 0.057,
+            "high": 0.22
+          },
+          "missRate": {
+            "estimate": 0.667,
+            "low": 0,
+            "high": 1
+          }
+        },
+        "gbt": {
+          "rmse": {
+            "estimate": -0.011,
+            "low": -0.134,
+            "high": 0.094
+          },
+          "missRate": {
+            "estimate": 0.667,
+            "low": 0,
+            "high": 1
+          }
+        }
+      }
+    },
+    {
+      "trainedOn": "Chișinău",
+      "testedOn": "București",
+      "windows": 288,
+      "hours": 6897,
+      "hourly": {
+        "raw": {
+          "rmse": 6.955,
+          "mae": 4.565,
+          "bias": -2.368,
+          "r": 0.536
+        },
+        "scaled": {
+          "rmse": 7.437,
+          "mae": 4.411,
+          "bias": -3.064,
+          "r": 0.536
+        },
+        "ridge": {
+          "rmse": 6.6,
+          "mae": 3.895,
+          "bias": -2.651,
+          "r": 0.676
+        },
+        "gbt": {
+          "rmse": 6.229,
+          "mae": 3.601,
+          "bias": -2.359,
+          "r": 0.703
+        }
+      },
+      "improvementAt15": {
+        "scaled": {
+          "rmse": {
+            "estimate": -0.069,
+            "low": -0.117,
+            "high": -0.015
+          },
+          "missRate": {
+            "estimate": -0.5,
+            "low": -0.895,
+            "high": -0.241
+          }
+        },
+        "ridge": {
+          "rmse": {
+            "estimate": 0.051,
+            "low": -0.006,
+            "high": 0.112
+          },
+          "missRate": {
+            "estimate": -0.5,
+            "low": -0.895,
+            "high": -0.241
+          }
+        },
+        "gbt": {
+          "rmse": {
+            "estimate": 0.104,
+            "low": 0.047,
+            "high": 0.164
+          },
+          "missRate": {
+            "estimate": -0.429,
+            "low": -0.792,
+            "high": -0.195
+          }
+        }
+      }
+    }
+  ],
+  "bySeason": [
+    {
+      "season": "Apr–May",
+      "windows": 118,
+      "hours": 2828,
+      "hourly": {
+        "raw": {
+          "rmse": 4.544,
+          "mae": 3.025,
+          "bias": -2.015,
+          "r": 0.135
+        },
+        "scaled": {
+          "rmse": 3.957,
+          "mae": 2.973,
+          "bias": 0.469,
+          "r": 0.136
+        },
+        "ridge": {
+          "rmse": 3.422,
+          "mae": 2.379,
+          "bias": 0.284,
+          "r": 0.482
+        },
+        "gbt": {
+          "rmse": 3.35,
+          "mae": 2.226,
+          "bias": -0.139,
+          "r": 0.509
+        }
+      },
+      "improvementAt15": {
+        "scaled": {
+          "rmse": {
+            "estimate": 0.129,
+            "low": 0.071,
+            "high": 0.18
+          },
+          "missRate": {
+            "estimate": 0,
+            "low": 0,
+            "high": 0
+          }
+        },
+        "ridge": {
+          "rmse": {
+            "estimate": 0.247,
+            "low": 0.198,
+            "high": 0.3
+          },
+          "missRate": {
+            "estimate": 0,
+            "low": 0,
+            "high": 0
+          }
+        },
+        "gbt": {
+          "rmse": {
+            "estimate": 0.263,
+            "low": 0.216,
+            "high": 0.312
+          },
+          "missRate": {
+            "estimate": 0,
+            "low": 0,
+            "high": 0
+          }
+        }
+      }
+    },
+    {
+      "season": "Jan–Mar (heating season)",
+      "windows": 166,
+      "hours": 3969,
+      "hourly": {
+        "raw": {
+          "rmse": 9.394,
+          "mae": 6.735,
+          "bias": -2.338,
+          "r": 0.358
+        },
+        "scaled": {
+          "rmse": 8.388,
+          "mae": 5.721,
+          "bias": -3.989,
+          "r": 0.491
+        },
+        "ridge": {
+          "rmse": 7.445,
+          "mae": 4.85,
+          "bias": -2.585,
+          "r": 0.579
+        },
+        "gbt": {
+          "rmse": 7.118,
+          "mae": 4.858,
+          "bias": -0.69,
+          "r": 0.57
+        }
+      },
+      "improvementAt15": {
+        "scaled": {
+          "rmse": {
+            "estimate": 0.107,
+            "low": 0.053,
+            "high": 0.169
+          },
+          "missRate": {
+            "estimate": -0.214,
+            "low": -0.478,
+            "high": -0.063
+          }
+        },
+        "ridge": {
+          "rmse": {
+            "estimate": 0.207,
+            "low": 0.147,
+            "high": 0.279
+          },
+          "missRate": {
+            "estimate": -0.107,
+            "low": -0.391,
+            "high": 0.088
+          }
+        },
+        "gbt": {
+          "rmse": {
+            "estimate": 0.242,
+            "low": 0.173,
+            "high": 0.308
+          },
+          "missRate": {
+            "estimate": 0.25,
+            "low": -0.037,
+            "high": 0.481
+          }
+        }
+      }
+    },
+    {
+      "season": "Jun–Aug",
+      "windows": 178,
+      "hours": 4266,
+      "hourly": {
+        "raw": {
+          "rmse": 2.982,
+          "mae": 2.111,
+          "bias": -0.476,
+          "r": 0.313
+        },
+        "scaled": {
+          "rmse": 2.959,
+          "mae": 2.481,
+          "bias": 1.599,
+          "r": 0.423
+        },
+        "ridge": {
+          "rmse": 2.764,
+          "mae": 2.054,
+          "bias": -0.808,
+          "r": 0.421
+        },
+        "gbt": {
+          "rmse": 2.103,
+          "mae": 1.513,
+          "bias": -0.26,
+          "r": 0.62
+        }
+      },
+      "improvementAt15": {
+        "scaled": {
+          "rmse": {
+            "estimate": 0.008,
+            "low": -0.095,
+            "high": 0.089
+          },
+          "missRate": {
+            "estimate": 0,
+            "low": 0,
+            "high": 0
+          }
+        },
+        "ridge": {
+          "rmse": {
+            "estimate": 0.073,
+            "low": -0.012,
+            "high": 0.153
+          },
+          "missRate": {
+            "estimate": 0,
+            "low": 0,
+            "high": 0
+          }
+        },
+        "gbt": {
+          "rmse": {
+            "estimate": 0.295,
+            "low": 0.235,
+            "high": 0.346
+          },
+          "missRate": {
+            "estimate": 0,
+            "low": 0,
+            "high": 0
+          }
+        }
+      }
+    },
+    {
+      "season": "Sep–Oct",
+      "windows": 114,
+      "hours": 2728,
+      "hourly": {
+        "raw": {
+          "rmse": 5.952,
+          "mae": 3.855,
+          "bias": 1.889,
+          "r": 0.543
+        },
+        "scaled": {
+          "rmse": 4.689,
+          "mae": 3.703,
+          "bias": 2.699,
+          "r": 0.59
+        },
+        "ridge": {
+          "rmse": 4.675,
+          "mae": 3.635,
+          "bias": 2.966,
+          "r": 0.647
+        },
+        "gbt": {
+          "rmse": 5.806,
+          "mae": 4.171,
+          "bias": 3.37,
+          "r": 0.594
+        }
+      },
+      "improvementAt15": {
+        "scaled": {
+          "rmse": {
+            "estimate": 0.212,
+            "low": 0.049,
+            "high": 0.336
+          },
+          "missRate": {
+            "estimate": 1,
+            "low": 0,
+            "high": 1
+          }
+        },
+        "ridge": {
+          "rmse": {
+            "estimate": 0.215,
+            "low": 0.025,
+            "high": 0.361
+          },
+          "missRate": {
+            "estimate": 1,
+            "low": 0,
+            "high": 1
+          }
+        },
+        "gbt": {
+          "rmse": {
+            "estimate": 0.024,
+            "low": -0.224,
+            "high": 0.219
+          },
+          "missRate": {
+            "estimate": 1,
+            "low": 0,
+            "high": 1
+          }
+        }
+      }
+    }
+  ],
+  "featureImportance": [
+    {
+      "city": "Chișinău",
+      "gbtShareOfGain": [
+        {
+          "feature": "log_owm_co",
+          "share": 0.347
+        },
+        {
+          "feature": "humidity",
+          "share": 0.1119
+        },
+        {
+          "feature": "temperature",
+          "share": 0.1002
+        },
+        {
+          "feature": "log_boundary_layer",
+          "share": 0.0741
+        },
+        {
+          "feature": "owm_pm2_5",
+          "share": 0.0616
+        },
+        {
+          "feature": "owm_pm10",
+          "share": 0.0577
+        },
+        {
+          "feature": "owm_pm2_5_mean24h",
+          "share": 0.0421
+        },
+        {
+          "feature": "pressure",
+          "share": 0.0403
+        },
+        {
+          "feature": "wind_speed",
+          "share": 0.034
+        },
+        {
+          "feature": "log_owm_o3",
+          "share": 0.0261
+        },
+        {
+          "feature": "wind_dir_cos",
+          "share": 0.0257
+        },
+        {
+          "feature": "log_owm_nh3",
+          "share": 0.0207
+        },
+        {
+          "feature": "wind_dir_sin",
+          "share": 0.0129
+        },
+        {
+          "feature": "log_owm_so2",
+          "share": 0.0125
+        },
+        {
+          "feature": "hour_sin",
+          "share": 0.0118
+        },
+        {
+          "feature": "log_owm_no2",
+          "share": 0.0087
+        },
+        {
+          "feature": "hour_cos",
+          "share": 0.0051
+        },
+        {
+          "feature": "log_owm_no",
+          "share": 0.0028
+        },
+        {
+          "feature": "log_precipitation",
+          "share": 0.0028
+        },
+        {
+          "feature": "weekend",
+          "share": 0.002
+        }
+      ],
+      "ridgeStandardizedWeights": [
+        {
+          "feature": "humidity",
+          "weight": 0.958
+        },
+        {
+          "feature": "owm_pm2_5",
+          "weight": 0.786
+        },
+        {
+          "feature": "log_owm_co",
+          "weight": 0.739
+        },
+        {
+          "feature": "log_boundary_layer",
+          "weight": -0.488
+        },
+        {
+          "feature": "wind_speed",
+          "weight": -0.458
+        },
+        {
+          "feature": "temperature",
+          "weight": -0.33
+        },
+        {
+          "feature": "wind_dir_cos",
+          "weight": 0.308
+        },
+        {
+          "feature": "hour_cos",
+          "weight": -0.255
+        },
+        {
+          "feature": "owm_pm10",
+          "weight": 0.225
+        },
+        {
+          "feature": "pressure",
+          "weight": -0.206
+        },
+        {
+          "feature": "log_owm_so2",
+          "weight": 0.175
+        },
+        {
+          "feature": "log_owm_no2",
+          "weight": 0.158
+        },
+        {
+          "feature": "wind_dir_sin",
+          "weight": 0.145
+        },
+        {
+          "feature": "log_owm_o3",
+          "weight": 0.104
+        },
+        {
+          "feature": "log_owm_no",
+          "weight": -0.097
+        },
+        {
+          "feature": "owm_pm2_5_mean24h",
+          "weight": 0.094
+        },
+        {
+          "feature": "weekend",
+          "weight": 0.062
+        },
+        {
+          "feature": "hour_sin",
+          "weight": -0.052
+        },
+        {
+          "feature": "log_precipitation",
+          "weight": -0.022
+        },
+        {
+          "feature": "log_owm_nh3",
+          "weight": -0.021
+        }
+      ],
+      "ridgeLambda": 1000,
+      "gbtTrees": 250,
+      "gbtNodes": 6368
+    },
+    {
+      "city": "București",
+      "gbtShareOfGain": [
+        {
+          "feature": "temperature",
+          "share": 0.2812
+        },
+        {
+          "feature": "log_owm_co",
+          "share": 0.1709
+        },
+        {
+          "feature": "pressure",
+          "share": 0.0852
+        },
+        {
+          "feature": "owm_pm2_5_mean24h",
+          "share": 0.0839
+        },
+        {
+          "feature": "log_boundary_layer",
+          "share": 0.0632
+        },
+        {
+          "feature": "log_owm_so2",
+          "share": 0.0504
+        },
+        {
+          "feature": "owm_pm2_5",
+          "share": 0.0501
+        },
+        {
+          "feature": "humidity",
+          "share": 0.0451
+        },
+        {
+          "feature": "wind_dir_sin",
+          "share": 0.0255
+        },
+        {
+          "feature": "wind_speed",
+          "share": 0.0216
+        },
+        {
+          "feature": "owm_pm10",
+          "share": 0.02
+        },
+        {
+          "feature": "log_owm_nh3",
+          "share": 0.0196
+        },
+        {
+          "feature": "log_owm_o3",
+          "share": 0.0187
+        },
+        {
+          "feature": "wind_dir_cos",
+          "share": 0.0184
+        },
+        {
+          "feature": "hour_sin",
+          "share": 0.0142
+        },
+        {
+          "feature": "log_owm_no2",
+          "share": 0.0113
+        },
+        {
+          "feature": "weekend",
+          "share": 0.0083
+        },
+        {
+          "feature": "hour_cos",
+          "share": 0.0049
+        },
+        {
+          "feature": "log_owm_no",
+          "share": 0.0047
+        },
+        {
+          "feature": "log_precipitation",
+          "share": 0.0025
+        }
+      ],
+      "ridgeStandardizedWeights": [
+        {
+          "feature": "temperature",
+          "weight": -1.787
+        },
+        {
+          "feature": "owm_pm10",
+          "weight": 0.918
+        },
+        {
+          "feature": "humidity",
+          "weight": 0.908
+        },
+        {
+          "feature": "log_boundary_layer",
+          "weight": -0.743
+        },
+        {
+          "feature": "owm_pm2_5_mean24h",
+          "weight": 0.728
+        },
+        {
+          "feature": "owm_pm2_5",
+          "weight": 0.712
+        },
+        {
+          "feature": "wind_speed",
+          "weight": -0.647
+        },
+        {
+          "feature": "pressure",
+          "weight": -0.6
+        },
+        {
+          "feature": "log_owm_so2",
+          "weight": 0.585
+        },
+        {
+          "feature": "hour_sin",
+          "weight": -0.538
+        },
+        {
+          "feature": "hour_cos",
+          "weight": -0.532
+        },
+        {
+          "feature": "wind_dir_sin",
+          "weight": -0.463
+        },
+        {
+          "feature": "log_owm_nh3",
+          "weight": -0.412
+        },
+        {
+          "feature": "log_owm_co",
+          "weight": 0.352
+        },
+        {
+          "feature": "log_precipitation",
+          "weight": -0.331
+        },
+        {
+          "feature": "log_owm_o3",
+          "weight": -0.246
+        },
+        {
+          "feature": "log_owm_no",
+          "weight": -0.232
+        },
+        {
+          "feature": "log_owm_no2",
+          "weight": 0.227
+        },
+        {
+          "feature": "wind_dir_cos",
+          "weight": -0.158
+        },
+        {
+          "feature": "weekend",
+          "weight": 0.121
+        }
+      ],
+      "ridgeLambda": 1000,
+      "gbtTrees": 250,
+      "gbtNodes": 6454
+    }
+  ],
+  "latency": {
+    "machine": "Intel(R) Core(TM) i7-9700K CPU @ 3.60GHz (8 threads), Node v24.21.0",
+    "predictions": 6912,
+    "perPredictionMicroseconds": {
+      "raw": 0.015,
+      "scaled": 0.029,
+      "ridge": 0.035,
+      "gbt": 10.666
+    },
+    "per24hWindowMilliseconds": {
+      "raw": 0.0014,
+      "scaled": 0.0012,
+      "ridge": 0.0012,
+      "gbt": 0.2427
+    },
+    "meanTrainingMillisecondsPerFold": 577
+  },
+  "plannerGain": [
+    {
+      "city": "Chișinău",
+      "days": 288,
+      "meanGainUgm3": 2.5,
+      "alertDays": 7,
+      "meanGainOnAlertDaysUgm3": 5.68
+    },
+    {
+      "city": "București",
+      "days": 288,
+      "meanGainUgm3": 3.92,
+      "alertDays": 42,
+      "meanGainOnAlertDaysUgm3": 9.2
+    }
+  ],
+  "meta": {
+    "generatedAt": "2026-11-05T16:15:07.803Z",
+    "period": {
+      "start": "2026-01-01",
+      "end": "2026-10-31"
+    },
+    "folds": 6,
+    "gapDays": 2,
+    "minHoursPerWindow": 18,
+    "bootstrap": {
+      "resamples": 2000,
+      "seed": 11
+    },
+    "gbtParams": {
+      "trees": 250,
+      "depth": 4,
+      "learningRate": 0.05,
+      "subsample": 0.8,
+      "minLeaf": 30,
+      "lambda": 1,
+      "bins": 48,
+      "seed": 7
+    },
+    "features": [
+      "owm_pm2_5",
+      "owm_pm10",
+      "log_owm_no2",
+      "log_owm_o3",
+      "log_owm_co",
+      "log_owm_so2",
+      "log_owm_nh3",
+      "log_owm_no",
+      "owm_pm2_5_mean24h",
+      "temperature",
+      "humidity",
+      "wind_speed",
+      "wind_dir_sin",
+      "wind_dir_cos",
+      "pressure",
+      "log_precipitation",
+      "log_boundary_layer",
+      "hour_sin",
+      "hour_cos",
+      "weekend"
+    ],
+    "thresholds": {
+      "who24h": 15,
+      "epaUsg": 35.5
+    }
+  }
+}
